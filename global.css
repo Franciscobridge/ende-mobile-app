@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+
+  --color-primary: #F04444;
+  --color-background: #111111;
+  --color-card: #2B2B2B;
+  --color-foreground: #E9E9E9;
+
+  --font-sans: 'Inter-Regular';
+  --font-bold: 'Inter-Bold';
+  --font-semiBold: 'Inter-SemiBold';
+  --font-medium: 'Inter-Medium';
+}
