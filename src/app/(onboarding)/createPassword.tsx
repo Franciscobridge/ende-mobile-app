@@ -1,6 +1,7 @@
+import Button from "@/components/ui/button";
 import { Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Image,
@@ -30,7 +31,6 @@ export default function CreatePassword() {
     if (confirmPassword && confirmPassword === password) {
       setSuccess(true);
 
-      // Animação do ícone de sucesso
       Animated.spring(scaleAnim, {
         toValue: 1,
         useNativeDriver: true,
@@ -38,7 +38,6 @@ export default function CreatePassword() {
         tension: 150,
       }).start();
 
-      // Redirecionamento automático
       setTimeout(() => {
         setModalVisible(false);
         router.replace("/(with-login)/home");
@@ -79,22 +78,15 @@ export default function CreatePassword() {
               onChangeText={setPassword}
             />
 
-            <TouchableOpacity
-              className={`rounded-lg px-6 py-3 items-center ${
-                isDisabled ? "bg-primary/60" : "bg-primary"
-              }`}
-              disabled={isDisabled}
-              activeOpacity={0.8}
+            <Button
               onPress={() => setModalVisible(true)}
-            >
-              <Text className="text-white font-bold text-base">
-                Criar chave de acesso
-              </Text>
-            </TouchableOpacity>
+              title="Criar chave de acesso"
+              disabled={isDisabled}
+            />
+
           </View>
         </View>
 
-        {/* ===== MODAL ===== */}
         <Modal
           visible={modalVisible}
           transparent
@@ -105,8 +97,7 @@ export default function CreatePassword() {
             <View className="flex-1 bg-black/60 items-center justify-center px-6">
               <View className="bg-foreground w-full rounded-2xl p-6 gap-3">
                 {!success ? (
-                  <>
-                    {/* Cabeçalho: título/descrição à esquerda e X à direita */}
+                  <Fragment>
                     <View className="flex-row justify-between items-start">
                       <View className="flex-1 pr-2">
                         <Text className="text-xl font-bold text-background">
@@ -128,7 +119,7 @@ export default function CreatePassword() {
                       onChangeText={setConfirmPassword}
                       autoFocus
                     />
-                  </>
+                  </Fragment>
                 ) : (
                   <View className="items-center justify-center py-6">
                     <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>

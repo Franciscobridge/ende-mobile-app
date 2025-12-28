@@ -1,4 +1,5 @@
 import { Info } from "@/components/custom/info-modal";
+import Button from "@/components/ui/button";
 import { FancySpinner } from "@/components/ui/fancySpinner";
 import { Feather } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
@@ -12,7 +13,6 @@ import {
   ScrollView,
   Text,
   TextInput,
-  TouchableOpacity,
   View
 } from "react-native";
 
@@ -27,10 +27,24 @@ export default function VerifyContract() {
 
   const contractData = {
     name: "Manuel Sousa",
-    email: "joao@email.com",
+    email: "manuel@email.com",
     phone: "+244 923 456 789",
     address: "Rua Principal, Nº 45, Luanda"
   };
+
+  function handleVerify() {
+    setIsDialogVisible(true);
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1800);
+  }
+
+  function handleConfirm() {
+    setIsDialogVisible(false)
+    router.push("/(onboarding)/scannerBarCode")
+  }
 
   return (
     <Fragment>
@@ -62,9 +76,7 @@ export default function VerifyContract() {
           </View>
 
           <View className="flex-1 justify-end">
-            {/* Card */}
             <View className="bg-foreground w-full rounded-t-3xl p-6 gap-10 grow">
-              {/* Cabeçalho */}
               <View className="flex-row items-center gap-3">
                 <View className="bg-primary p-3 rounded-lg">
                   <Feather name="user" size={25} color="#ffffff" />
@@ -80,7 +92,6 @@ export default function VerifyContract() {
                 </View>
               </View>
 
-              {/* Formulário */}
               <View className="gap-4">
                 <View className="gap-1.5">
                   <Text className="font-bold text-background">
@@ -96,25 +107,11 @@ export default function VerifyContract() {
                   />
                 </View>
 
-                <TouchableOpacity
-                  onPress={() => {
-                    setIsDialogVisible(true);
-                    setLoading(true);
-
-                    setTimeout(() => {
-                      setLoading(false);
-                    }, 1800);
-                  }}
-
-                  className={`rounded-lg px-6 py-3 items-center ${isDisabled ? "bg-primary/60" : "bg-primary"
-                    }`}
-                  activeOpacity={0.7}
+                <Button
+                  onPress={handleVerify}
+                  title="Verificar"
                   disabled={isDisabled}
-                >
-                  <Text className="text-white font-bold text-base">
-                    Verificar
-                  </Text>
-                </TouchableOpacity>
+                />
 
                 <Link
                   href="/"
@@ -140,7 +137,6 @@ export default function VerifyContract() {
               Dados do Contrato
             </Text>
 
-            {/* Informações do contrato*/}
             {loading ? (
               <FancySpinner />
             ) : (
@@ -153,22 +149,15 @@ export default function VerifyContract() {
                 </View>
 
                 <View className="flex-row gap-3 mt-4">
-                  <TouchableOpacity
+                  <Button
                     onPress={() => setIsDialogVisible(false)}
-                    className="flex-1 border border-card rounded-lg py-3 items-center"
-                  >
-                    <Text className="text-card font-bold">Cancelar</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={() => {
-                      setIsDialogVisible(false);
-                      router.push("/(onboarding)/scannerBarCode");
-                    }}
-                    className="flex-1 bg-primary rounded-lg py-3 items-center"
-                  >
-                    <Text className="text-white font-bold">Confirmar</Text>
-                  </TouchableOpacity>
+                    title="Cancelar"
+                    variant="outline"
+                  />
+                  <Button
+                    onPress={handleConfirm}
+                    title="Confirmar"
+                  />
                 </View>
               </>
             )}

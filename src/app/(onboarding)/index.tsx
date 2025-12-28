@@ -1,14 +1,19 @@
+import Button from '@/components/ui/button';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 export default function Initial() {
 
   const router = useRouter();
 
+  function handleStart(){
+    router.push("/(onboarding)/verifyContract")
+  }
+
   return (
-    <View className="flex-1 px-6 items-center bg-background">
-     <StatusBar backgroundColor="#111111" translucent style="dark"/>
+    <View className="flex-1 px-6 gap-10 items-center bg-background">
+      <StatusBar backgroundColor="#111111" translucent style="dark" />
       <View className="relative flex flex-col mt-24 items-center justify-center">
         <Image
           source={require('../../../assets/images/logo.png')}
@@ -20,7 +25,7 @@ export default function Initial() {
         </Text>
       </View>
 
-      <View className="justify-center items-center mt-5 gap-y-4">
+      <View className="justify-center items-center mt-5 gap-y-3">
         <Text className="text-white font-bold text-2xl text-center">
           Bem vindo
         </Text>
@@ -31,19 +36,14 @@ export default function Initial() {
         </Text>
       </View>
 
-      <TouchableOpacity
-        onPress={() => router.push('/(onboarding)/verifyContract')}
-        className="bg-primary rounded-md mt-8 px-6 py-3 items-center"
-        activeOpacity={0.5}
-      >
-        <Text className="text-foreground font-bold">
-          Começar agora
-        </Text>
-      </TouchableOpacity>
+      <Button 
+        onPress={handleStart} 
+        title='Começar agora' 
+      />
 
       <Text className="text-foreground/80 text-xs mt-8 font-sans text-center">
         © {new Date().getFullYear()} Ende App
       </Text>
     </View>
   )
-}
+} 

@@ -7,7 +7,7 @@ import { Alert, Image, Modal, Text, TouchableOpacity, View } from "react-native"
 export default function ScannerBarCode() {
   const [showCamera, setShowCamera] = useState(false);
   const [scannedData, setScannedData] = useState<string | null>(null);
-  const [permission, requestPermission] = useCameraPermissions();
+  const [_, requestPermission] = useCameraPermissions();
   const router = useRouter();
 
   // Solicita permissão e abre a câmera
@@ -25,20 +25,17 @@ export default function ScannerBarCode() {
     }
   }
 
-  // Função chamada quando um código de barras é lido
   function handleBarCode(data: string) {
     setScannedData(data);
-    setShowCamera(false); // fecha a câmera e abre o modal de confirmação
+    setShowCamera(false);
   }
 
-  // Confirmação do código
   function handleConfirm() {
     console.log("Código confirmado:", scannedData);
     setScannedData(null);
     router.push("/(onboarding)/createPassword");
   }
 
-  // Cancela e volta para a câmera
   function handleCancel() {
     setScannedData(null);
     setShowCamera(true);
@@ -48,7 +45,6 @@ export default function ScannerBarCode() {
     <View className="flex-1 bg-background px-6">
       <StatusBar backgroundColor="#111111" translucent style="dark" />
 
-      {/* Conteúdo principal */}
       <View className="flex-1 items-center justify-center">
         <Image
           source={require("../../../assets/images/ilustration.png")}
@@ -79,14 +75,12 @@ export default function ScannerBarCode() {
         </TouchableOpacity>
       </View>
 
-      {/* Modal da câmera */}
       <Modal visible={showCamera} animationType="slide">
         <View className="flex-1">
           <CameraView
             style={{ flex: 1 }}
             facing="back"
             onBarcodeScanned={({ data, type }) => {
-              // Filtra apenas códigos de barras desejados
               const allowedTypes = ["ean13", "code128", "upc"];
               if (allowedTypes.includes(type)) {
                 handleBarCode(data);
@@ -104,15 +98,11 @@ export default function ScannerBarCode() {
               alignItems: "center",
             }}
           >
-            {/* Top */}
             <View style={{ flex: 1, width: "100%", backgroundColor: "rgba(0,0,0,0.6)" }} />
 
-            {/* Middle: sides e área central */}
             <View style={{ flexDirection: "row" }}>
-              {/* Esquerda */}
               <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
 
-              {/* Área central visível */}
               <View
                 style={{
                   width: 250,
@@ -124,11 +114,9 @@ export default function ScannerBarCode() {
                 }}
               />
 
-              {/* Direita */}
               <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
             </View>
 
-            {/* Bottom */}
             <View style={{ flex: 1, width: "100%", backgroundColor: "rgba(0,0,0,0.6)" }} />
           </View>
 
@@ -144,7 +132,6 @@ export default function ScannerBarCode() {
         </View>
       </Modal>
 
-      {/* Modal de confirmação */}
       <Modal visible={scannedData !== null} transparent animationType="fade">
         <View className="flex-1 bg-black/60 justify-center items-center px-6">
           <View className="bg-foreground w-full rounded-2xl p-6 gap-4">
