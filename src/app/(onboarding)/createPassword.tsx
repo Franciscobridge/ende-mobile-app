@@ -1,7 +1,7 @@
-import Button from "@/components/ui/button";
-import { Feather } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Feather } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Image,
@@ -13,14 +13,14 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View
-} from "react-native";
+  View,
+} from 'react-native';
 
 export default function CreatePassword() {
   const router = useRouter();
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -40,28 +40,23 @@ export default function CreatePassword() {
 
       setTimeout(() => {
         setModalVisible(false);
-        router.replace("/(with-login)/home");
+        router.replace('/(with-login)/home');
       }, 1500);
     }
   }, [confirmPassword]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        className="flex-1 bg-background"
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
+      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View className="flex-1 p-6 items-center justify-center gap-6">
           <View className="w-full items-center">
             <Image
-              source={require("../../../assets/images/ilustration-login.png")}
+              source={require('../../../assets/images/ilustration-login.png')}
               style={{ width: 260, height: 260 }}
               resizeMode="contain"
             />
             <View className="items-center gap-2 -mt-4">
-              <Text className="text-white font-bold text-2xl text-center">
-                Criar chave de acesso
-              </Text>
+              <Text className="text-white font-bold text-2xl text-center">Criar chave de acesso</Text>
               <Text className="text-foreground/80 text-center px-6">
                 Defina uma chave de acesso segura para proteger sua conta e garantir acesso rápido ao aplicativo.
               </Text>
@@ -78,31 +73,19 @@ export default function CreatePassword() {
               onChangeText={setPassword}
             />
 
-            <Button
-              onPress={() => setModalVisible(true)}
-              title="Criar chave de acesso"
-              disabled={isDisabled}
-            />
-
+            <Button onPress={() => setModalVisible(true)} title="Criar chave de acesso" disabled={isDisabled} />
           </View>
         </View>
 
-        <Modal
-          visible={modalVisible}
-          transparent
-          animationType="fade"
-          statusBarTranslucent
-        >
+        <Modal visible={modalVisible} transparent animationType="fade" statusBarTranslucent>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View className="flex-1 bg-black/60 items-center justify-center px-6">
+            <View className="flex-1 bg-black/70 items-center justify-center px-6">
               <View className="bg-foreground w-full rounded-2xl p-6 gap-3">
                 {!success ? (
                   <Fragment>
                     <View className="flex-row justify-between items-start">
                       <View className="flex-1 pr-2">
-                        <Text className="text-xl font-bold text-background">
-                          Confirmar chave de acesso
-                        </Text>
+                        <Text className="text-xl font-bold text-background">Confirmar chave de acesso</Text>
                       </View>
 
                       <TouchableOpacity onPress={() => setModalVisible(false)}>
@@ -123,11 +106,7 @@ export default function CreatePassword() {
                 ) : (
                   <View className="items-center justify-center py-6">
                     <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-                      <Feather
-                        name="check-circle"
-                        size={72}
-                        color="#F04444"
-                      />
+                      <Feather name="check-circle" size={72} color="#F04444" />
                     </Animated.View>
                     <Text className="text-background font-bold text-lg text-center mt-4">
                       Chave criada com sucesso!

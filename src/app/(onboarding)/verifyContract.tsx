@@ -1,35 +1,26 @@
-import { Info } from "@/components/custom/info-modal";
-import Button from "@/components/ui/button";
-import { FancySpinner } from "@/components/ui/fancySpinner";
-import { Feather } from "@expo/vector-icons";
-import { Link, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { Fragment, useState } from "react";
-import {
-  Image,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  ScrollView,
-  Text,
-  TextInput,
-  View
-} from "react-native";
+import { Info } from '@/components/custom/info-modal';
+import { Button } from '@/components/ui/button';
+import { FancySpinner } from '@/components/ui/fancySpinner';
+import { Feather } from '@expo/vector-icons';
+import { Link, useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { Fragment, useState } from 'react';
+import { Image, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, View } from 'react-native';
 
 export default function VerifyContract() {
-  const [numberContract, setNumberContract] = useState("");
+  const [numberContract, setNumberContract] = useState('');
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const isDisabled = numberContract.trim() === "";
+  const isDisabled = numberContract.trim() === '';
 
   const contractData = {
-    name: "Manuel Sousa",
-    email: "manuel@email.com",
-    phone: "+244 923 456 789",
-    address: "Rua Principal, Nº 45, Luanda"
+    name: 'Manuel Sousa',
+    email: 'manuel@email.com',
+    phone: '+244 923 456 789',
+    address: 'Rua Principal, Nº 45, Luanda',
   };
 
   function handleVerify() {
@@ -42,16 +33,13 @@ export default function VerifyContract() {
   }
 
   function handleConfirm() {
-    setIsDialogVisible(false)
-    router.push("/(onboarding)/scannerBarCode")
+    setIsDialogVisible(false);
+    router.push('/(onboarding)/scannerBarCode');
   }
 
   return (
     <Fragment>
-      <KeyboardAvoidingView
-        className="flex-1 bg-background"
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
+      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <StatusBar backgroundColor="#111111" translucent style="dark" />
 
         <ScrollView
@@ -62,17 +50,14 @@ export default function VerifyContract() {
           overScrollMode="never"
           showsVerticalScrollIndicator={false}
         >
-
           <View className="relative mt-24 items-center justify-center">
             <Image
-              source={require("../../../assets/images/logo.png")}
+              source={require('../../../assets/images/logo.png')}
               style={{ width: 360, height: 200 }}
               resizeMode="contain"
             />
 
-            <Text className="text-white font-bold absolute bottom-12 left-12 text-2xl">
-              APP
-            </Text>
+            <Text className="text-white font-bold absolute bottom-12 left-12 text-2xl">APP</Text>
           </View>
 
           <View className="flex-1 justify-end">
@@ -83,20 +68,14 @@ export default function VerifyContract() {
                 </View>
 
                 <View className="flex-1">
-                  <Text className="text-xl font-bold text-background">
-                    Verificar Contrato
-                  </Text>
-                  <Text className="text-card/65 -mt-1">
-                    Insira o número do seu contrato ENDE.
-                  </Text>
+                  <Text className="text-xl font-bold text-background">Verificar Contrato</Text>
+                  <Text className="text-card/65 -mt-1">Insira o número do seu contrato ENDE.</Text>
                 </View>
               </View>
 
               <View className="gap-4">
                 <View className="gap-1.5">
-                  <Text className="font-bold text-background">
-                    Número de contrato
-                  </Text>
+                  <Text className="font-bold text-background">Número de contrato</Text>
                   <TextInput
                     className="bg-white text-background rounded-md h-11 px-3"
                     placeholder="Ex: 224144253363"
@@ -107,16 +86,9 @@ export default function VerifyContract() {
                   />
                 </View>
 
-                <Button
-                  onPress={handleVerify}
-                  title="Verificar"
-                  disabled={isDisabled}
-                />
+                <Button onPress={handleVerify} title="Verificar" disabled={isDisabled} />
 
-                <Link
-                  href="/"
-                  className="text-right text-primary font-medium"
-                >
+                <Link href="/(onboarding)/infoCreateAccount" className="text-right text-primary font-medium">
                   Criar um contrato ENDE
                 </Link>
               </View>
@@ -125,17 +97,10 @@ export default function VerifyContract() {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <Modal
-        visible={isDialogVisible}
-        transparent
-        animationType="fade"
-        statusBarTranslucent
-      >
-        <View className="flex-1 bg-black/80 items-center justify-center px-6">
+      <Modal visible={isDialogVisible} transparent animationType="fade" statusBarTranslucent>
+        <View className="flex-1 bg-black/70 items-center justify-center px-6">
           <View className="bg-foreground w-full rounded-2xl p-6 gap-5">
-            <Text className="text-xl font-bold text-background text-center">
-              Dados do Contrato
-            </Text>
+            <Text className="text-xl font-bold text-background text-center">Dados do Contrato</Text>
 
             {loading ? (
               <FancySpinner />
@@ -149,15 +114,8 @@ export default function VerifyContract() {
                 </View>
 
                 <View className="flex-row gap-3 mt-4">
-                  <Button
-                    onPress={() => setIsDialogVisible(false)}
-                    title="Cancelar"
-                    variant="outline"
-                  />
-                  <Button
-                    onPress={handleConfirm}
-                    title="Confirmar"
-                  />
+                  <Button onPress={() => setIsDialogVisible(false)} title="Cancelar" variant="outline" />
+                  <Button onPress={handleConfirm} title="Confirmar" />
                 </View>
               </>
             )}
@@ -167,6 +125,3 @@ export default function VerifyContract() {
     </Fragment>
   );
 }
-
-
-

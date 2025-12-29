@@ -1,4 +1,4 @@
-import { Image, Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native';
 
 export function Header() {
   return (
@@ -8,9 +8,7 @@ export function Header() {
         style={{ width: 360, height: 200 }}
         resizeMode="contain"
       />
-      <Text className="text-white font-bold absolute bottom-12 left-12 text-2xl">
-        APP
-      </Text>
+      <Text className="text-white font-bold absolute bottom-12 left-12 text-2xl">APP</Text>
     </View>
-  )
+  );
 }
