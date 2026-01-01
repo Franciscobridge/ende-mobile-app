@@ -1,16 +1,16 @@
-import { Button } from '@/components/ui/button';
-import { Feather } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Button } from "@/components/ui/button"
+import { Feather } from "@expo/vector-icons"
+import { useRouter } from "expo-router"
+import { Image, ScrollView, Text, View } from "react-native"
 
 export default function InfoCreateAccount() {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-background p-6">
       {/* Cabeçalho */}
       <View className="items-start mb-12">
         <Image
-          source={require('../../../assets/images/logo.png')}
+          source={require("../../../assets/images/logo.png")}
           style={{ width: 120, height: 120 }}
           resizeMode="contain"
         />
@@ -78,5 +78,5 @@ export default function InfoCreateAccount() {
         <Button variant="primary" title="Voltar" onPress={() => router.back()} />
       </View>
     </ScrollView>
-  );
+  )
 }

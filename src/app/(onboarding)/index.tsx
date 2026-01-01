@@ -1,13 +1,13 @@
-import { Button } from '@/components/ui/button';
-import { useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Image, Text, View } from 'react-native';
+import { Button } from "@/components/ui/button"
+import { useRouter } from "expo-router"
+import { StatusBar } from "expo-status-bar"
+import { Image, Text, View } from "react-native"
 
 export default function Initial() {
-  const router = useRouter();
+  const router = useRouter()
 
   function handleStart() {
-    router.push('/(onboarding)/verifyContract');
+    router.push("/(with-login)/(tabs)/home")
   }
 
   return (
@@ -15,7 +15,7 @@ export default function Initial() {
       <StatusBar backgroundColor="#111111" translucent style="dark" />
       <View className="relative flex flex-col mt-24 items-center justify-center">
         <Image
-          source={require('../../../assets/images/logo.png')}
+          source={require("../../../assets/images/logo.png")}
           style={{ width: 360, height: 200 }}
           resizeMode="contain"
         />
@@ -37,5 +37,5 @@ export default function Initial() {
         © {new Date().getFullYear()} Ende App
       </Text>
     </View>
-  );
+  )
 }

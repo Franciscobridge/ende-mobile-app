@@ -1,47 +1,47 @@
-import { useAudioPlayer } from 'expo-audio';
-import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Alert, Image, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { useAudioPlayer } from "expo-audio"
+import { CameraView, useCameraPermissions } from "expo-camera"
+import { useRouter } from "expo-router"
+import { StatusBar } from "expo-status-bar"
+import { useState } from "react"
+import { Alert, Image, Modal, Text, TouchableOpacity, View } from "react-native"
 
 export default function ScannerBarCode() {
-  const [showCamera, setShowCamera] = useState(false);
-  const [scannedData, setScannedData] = useState<string | null>(null);
-  const [_, requestPermission] = useCameraPermissions();
-  const router = useRouter();
-  const audioSource = require('../../../lib/expo-audio/barcode-scanner-beep-sound-effect.mp3');
-  const player = useAudioPlayer(audioSource);
+  const [showCamera, setShowCamera] = useState(false)
+  const [scannedData, setScannedData] = useState<string | null>(null)
+  const [_, requestPermission] = useCameraPermissions()
+  const router = useRouter()
+  const audioSource = require("../../../lib/expo-audio/barcode-scanner-beep-sound-effect.mp3")
+  const player = useAudioPlayer(audioSource)
   // Solicita permissão e abre a câmera
   async function handleOpenCamera() {
     try {
-      const { granted } = await requestPermission();
+      const { granted } = await requestPermission()
 
       if (!granted) {
-        return Alert.alert('Câmera', 'Você precisa habilitar o uso da câmera');
+        return Alert.alert("Câmera", "Você precisa habilitar o uso da câmera")
       }
 
-      setShowCamera(true);
+      setShowCamera(true)
     } catch (error) {
-      console.error('Erro ao solicitar permissão:', error);
+      console.error("Erro ao solicitar permissão:", error)
     }
   }
 
   function handleBarCode(data: string) {
-    setScannedData(data);
-    player.play();
-    setShowCamera(false);
+    setScannedData(data)
+    player.play()
+    setShowCamera(false)
   }
 
   function handleConfirm() {
-    console.log('Código confirmado:', scannedData);
-    setScannedData(null);
-    router.push('/(onboarding)/createPassword');
+    console.log("Código confirmado:", scannedData)
+    setScannedData(null)
+    router.push("/(onboarding)/createPassword")
   }
 
   function handleCancel() {
-    setScannedData(null);
-    setShowCamera(true);
+    setScannedData(null)
+    setShowCamera(true)
   }
 
   return (
@@ -50,7 +50,7 @@ export default function ScannerBarCode() {
 
       <View className="flex-1 items-center justify-center">
         <Image
-          source={require('../../../assets/images/ilustration.png')}
+          source={require("../../../assets/images/ilustration.png")}
           resizeMode="contain"
           style={{ width: 260, height: 260 }}
         />
@@ -82,53 +82,53 @@ export default function ScannerBarCode() {
             style={{ flex: 1 }}
             facing="back"
             onBarcodeScanned={({ data, type }) => {
-              const allowedTypes = ['ean13', 'code128', 'upc'];
+              const allowedTypes = ["ean13", "code128", "upc"]
               if (allowedTypes.includes(type)) {
-                handleBarCode(data);
+                handleBarCode(data)
               }
             }}
           />
           <View
             style={{
-              position: 'absolute',
+              position: "absolute",
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <View
               style={{
                 flex: 1,
-                width: '100%',
-                backgroundColor: 'rgba(0,0,0,0.6)',
+                width: "100%",
+                backgroundColor: "rgba(0,0,0,0.6)",
               }}
             />
 
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }} />
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
 
               <View
                 style={{
                   width: 250,
                   height: 150,
                   borderWidth: 2,
-                  borderStyle: 'dashed',
-                  borderColor: '#555555',
+                  borderStyle: "dashed",
+                  borderColor: "#555555",
                   borderRadius: 12,
                 }}
               />
 
-              <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }} />
+              <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
             </View>
 
             <View
               style={{
                 flex: 1,
-                width: '100%',
-                backgroundColor: 'rgba(0,0,0,0.6)',
+                width: "100%",
+                backgroundColor: "rgba(0,0,0,0.6)",
               }}
             />
           </View>
@@ -147,7 +147,7 @@ export default function ScannerBarCode() {
             <Text className="text-xl font-bold text-background text-center">Confirmar Código</Text>
             <Text className="text-card text-center">
               O código lido é:
-              {'\n'}
+              {"\n"}
               <Text className="font-bold">{scannedData}</Text>
             </Text>
 
@@ -163,5 +163,5 @@ export default function ScannerBarCode() {
         </View>
       </Modal>
     </View>
-  );
+  )
 }

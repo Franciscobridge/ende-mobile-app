@@ -1,26 +1,22 @@
-import { useAppFonts } from '@/hooks/useAppFonts';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import '../../global.css';
+import { Stack } from "expo-router"
+import * as SplashScreen from "expo-splash-screen"
+import { useEffect } from "react"
+import "../../global.css"
+import { useAppFonts } from "../../hooks/useAppFonts"
 
-SplashScreen.preventAutoHideAsync();
-// SplashScreen.setOptions({
-//   duration: 1000,
-//   fade: true,
-// });
+SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const fontsLoaded = useAppFonts();
+  const fontsLoaded = useAppFonts()
 
   useEffect(() => {
     if (fontsLoaded) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync()
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded])
 
   if (!fontsLoaded) {
-    return null;
+    return null
   }
 
   return (
@@ -31,7 +27,10 @@ export default function RootLayout() {
       <Stack.Screen name="(onboarding)/createPassword" options={{ headerShown: false }} />
       <Stack.Screen name="(onboarding)/infoCreateAccount" options={{ headerShown: false }} />
       <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-      <Stack.Screen name="(with-login)/home/index" options={{ headerShown: false }} />
+      <Stack.Screen name="(with-login)/(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(with-login)/instant-consumption" options={{ headerShown: false }} />
+      <Stack.Screen name="(with-login)/expected-end" options={{ headerShown: false }} />
+      <Stack.Screen name="(with-login)/add-energy" options={{ headerShown: false }} />
     </Stack>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { Feather } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Button } from "@/components/ui/button"
+import { Feather } from "@expo/vector-icons"
+import { useRouter } from "expo-router"
+import { Fragment, useEffect, useRef, useState } from "react"
 import {
   Animated,
   Image,
@@ -14,44 +14,44 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-} from 'react-native';
+} from "react-native"
 
 export default function CreatePassword() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [modalVisible, setModalVisible] = useState(false)
+  const [success, setSuccess] = useState(false)
 
-  const scaleAnim = useRef(new Animated.Value(0)).current;
-  const isDisabled = password.length < 4;
+  const scaleAnim = useRef(new Animated.Value(0)).current
+  const isDisabled = password.length < 4
 
   useEffect(() => {
     if (confirmPassword && confirmPassword === password) {
-      setSuccess(true);
+      setSuccess(true)
 
       Animated.spring(scaleAnim, {
         toValue: 1,
         useNativeDriver: true,
         friction: 5,
         tension: 150,
-      }).start();
+      }).start()
 
       setTimeout(() => {
-        setModalVisible(false);
-        router.replace('/(with-login)/home');
-      }, 1500);
+        setModalVisible(false)
+        router.replace("/(with-login)/home")
+      }, 1500)
     }
-  }, [confirmPassword]);
+  }, [confirmPassword])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <View className="flex-1 p-6 items-center justify-center gap-6">
           <View className="w-full items-center">
             <Image
-              source={require('../../../assets/images/ilustration-login.png')}
+              source={require("../../../assets/images/ilustration-login.png")}
               style={{ width: 260, height: 260 }}
               resizeMode="contain"
             />
@@ -119,5 +119,5 @@ export default function CreatePassword() {
         </Modal>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
-  );
+  )
 }

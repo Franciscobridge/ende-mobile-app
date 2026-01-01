@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, View } from "react-native"
 
 export function Info({ label, value }: { label: string; value: string }) {
   return (
@@ -6,5 +6,5 @@ export function Info({ label, value }: { label: string; value: string }) {
       <Text className="text-card text-xs">{label}</Text>
       <Text className="text-background font-semibold">{value}</Text>
     </View>
-  );
+  )
 }

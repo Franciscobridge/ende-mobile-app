@@ -1,45 +1,45 @@
-import { Info } from '@/components/custom/info-modal';
-import { Button } from '@/components/ui/button';
-import { FancySpinner } from '@/components/ui/fancySpinner';
-import { Feather } from '@expo/vector-icons';
-import { Link, useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Fragment, useState } from 'react';
-import { Image, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, View } from 'react-native';
+import { Info } from "@/components/custom/info-modal"
+import { Button } from "@/components/ui/button"
+import { FancySpinner } from "@/components/ui/fancySpinner"
+import { Feather } from "@expo/vector-icons"
+import { Link, useRouter } from "expo-router"
+import { StatusBar } from "expo-status-bar"
+import { Fragment, useState } from "react"
+import { Image, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, View } from "react-native"
 
 export default function VerifyContract() {
-  const [numberContract, setNumberContract] = useState('');
-  const [isDialogVisible, setIsDialogVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [numberContract, setNumberContract] = useState("")
+  const [isDialogVisible, setIsDialogVisible] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const isDisabled = numberContract.trim() === '';
+  const isDisabled = numberContract.trim() === ""
 
   const contractData = {
-    name: 'Manuel Sousa',
-    email: 'manuel@email.com',
-    phone: '+244 923 456 789',
-    address: 'Rua Principal, Nº 45, Luanda',
-  };
+    name: "Manuel Sousa",
+    email: "manuel@email.com",
+    phone: "+244 923 456 789",
+    address: "Rua Principal, Nº 45, Luanda",
+  }
 
   function handleVerify() {
-    setIsDialogVisible(true);
-    setLoading(true);
+    setIsDialogVisible(true)
+    setLoading(true)
 
     setTimeout(() => {
-      setLoading(false);
-    }, 1800);
+      setLoading(false)
+    }, 1800)
   }
 
   function handleConfirm() {
-    setIsDialogVisible(false);
-    router.push('/(onboarding)/scannerBarCode');
+    setIsDialogVisible(false)
+    router.push("/(onboarding)/scannerBarCode")
   }
 
   return (
     <Fragment>
-      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <StatusBar backgroundColor="#111111" translucent style="dark" />
 
         <ScrollView
@@ -52,7 +52,7 @@ export default function VerifyContract() {
         >
           <View className="relative mt-24 items-center justify-center">
             <Image
-              source={require('../../../assets/images/logo.png')}
+              source={require("../../../assets/images/logo.png")}
               style={{ width: 360, height: 200 }}
               resizeMode="contain"
             />
@@ -123,5 +123,5 @@ export default function VerifyContract() {
         </View>
       </Modal>
     </Fragment>
-  );
+  )
 }
