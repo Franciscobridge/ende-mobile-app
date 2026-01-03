@@ -1,7 +1,6 @@
 import { useAudioPlayer } from "expo-audio"
 import { CameraView, useCameraPermissions } from "expo-camera"
 import { useRouter } from "expo-router"
-import { StatusBar } from "expo-status-bar"
 import { useState } from "react"
 import { Alert, Image, Modal, Text, TouchableOpacity, View } from "react-native"
 
@@ -46,8 +45,6 @@ export default function ScannerBarCode() {
 
   return (
     <View className="flex-1 bg-background px-6">
-      <StatusBar backgroundColor="#111111" translucent style="dark" />
-
       <View className="flex-1 items-center justify-center">
         <Image
           source={require("../../../assets/images/ilustration.png")}

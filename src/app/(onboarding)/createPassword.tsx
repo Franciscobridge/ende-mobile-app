@@ -40,10 +40,10 @@ export default function CreatePassword() {
 
       setTimeout(() => {
         setModalVisible(false)
-        router.replace("/(with-login)/home")
+        router.replace("/(with-login)/(tabs)/home")
       }, 1500)
     }
-  }, [confirmPassword])
+  }, [confirmPassword, scaleAnim, router.replace, password])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

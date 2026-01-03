@@ -1,11 +1,13 @@
+import { Header } from "@/components/custom/header"
 import { Info } from "@/components/custom/info-modal"
 import { Button } from "@/components/ui/button"
 import { FancySpinner } from "@/components/ui/fancySpinner"
 import { Feather } from "@expo/vector-icons"
 import { Link, useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
-import { Fragment, useState } from "react"
-import { Image, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, View } from "react-native"
+import { useState } from "react"
+import { KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, View } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function VerifyContract() {
   const [numberContract, setNumberContract] = useState("")
@@ -38,33 +40,26 @@ export default function VerifyContract() {
   }
 
   return (
-    <Fragment>
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar style="inverted" backgroundColor="#111111" translucent />
       <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === "ios" ? "padding" : undefined}>
-        <StatusBar backgroundColor="#111111" translucent style="dark" />
-
         <ScrollView
-          className="flex-1"
+          className="flex-1 "
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
           bounces={false}
           overScrollMode="never"
           showsVerticalScrollIndicator={false}
         >
-          <View className="relative mt-24 items-center justify-center">
-            <Image
-              source={require("../../../assets/images/logo.png")}
-              style={{ width: 360, height: 200 }}
-              resizeMode="contain"
-            />
-
-            <Text className="text-white font-bold absolute bottom-12 left-12 text-2xl">APP</Text>
+          <View className="flex-1 items-center">
+            <Header />
           </View>
 
           <View className="flex-1 justify-end">
-            <View className="bg-foreground w-full rounded-t-3xl p-6 gap-10 grow">
+            <View className="bg-foreground flex-1 rounded-t-3xl p-6 gap-10 grow">
               <View className="flex-row items-center gap-3">
                 <View className="bg-primary p-3 rounded-lg">
-                  <Feather name="user" size={25} color="#ffffff" />
+                  <Feather name="file-text" size={25} color="#ffffff" />
                 </View>
 
                 <View className="flex-1">
@@ -122,6 +117,6 @@ export default function VerifyContract() {
           </View>
         </View>
       </Modal>
-    </Fragment>
+    </SafeAreaView>
   )
 }
