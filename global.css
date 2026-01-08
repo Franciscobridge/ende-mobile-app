@@ -8,6 +8,13 @@
   --color-card: #2B2B2B;
   --color-foreground: #E9E9E9;
 
+
+--color-light-primary: #D73737;
+--color-light-background: #F7F7F7;
+--color-light-card: #FFFFFF;
+--color-light-foreground: #1A1A1A;
+
+
   --font-sans: 'Inter-Regular';
   --font-bold: 'Inter-Bold';
   --font-semiBold: 'Inter-SemiBold';

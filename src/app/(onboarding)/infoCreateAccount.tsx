@@ -12,7 +12,7 @@ export default function InfoCreateAccount() {
         {/* Cabeçalho */}
         <View className="items-start mb-12">
           <Image
-            source={require("../../../assets/images/logo.png")}
+            source={require("../../../assets/images/logo-dark.png")}
             style={{ width: 120, height: 120 }}
             resizeMode="contain"
           />

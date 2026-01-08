@@ -3,10 +3,12 @@ import { CameraView, useCameraPermissions } from "expo-camera"
 import { useRouter } from "expo-router"
 import { useState } from "react"
 import { Alert, Image, Modal, Text, TouchableOpacity, View } from "react-native"
+import { useUniwind } from "uniwind"
 
 export default function ScannerBarCode() {
   const [showCamera, setShowCamera] = useState(false)
   const [scannedData, setScannedData] = useState<string | null>(null)
+  const { theme } = useUniwind()
   const [_, requestPermission] = useCameraPermissions()
   const router = useRouter()
   const audioSource = require("../../../lib/expo-audio/barcode-scanner-beep-sound-effect.mp3")
@@ -44,18 +46,27 @@ export default function ScannerBarCode() {
   }
 
   return (
-    <View className="flex-1 bg-background px-6">
+    <View className="flex-1 bg-light-background dark:bg-background px-6">
       <View className="flex-1 items-center justify-center">
-        <Image
-          source={require("../../../assets/images/ilustration.png")}
-          resizeMode="contain"
-          style={{ width: 260, height: 260 }}
-        />
-
+        {theme === "light" ? (
+          <Image
+            source={require("../../../assets/images/ilustration-bar-light.png")}
+            resizeMode="contain"
+            style={{ width: 260, height: 260 }}
+          />
+        ) : (
+          <Image
+            source={require("../../../assets/images/ilustration-bar-dark.png")}
+            resizeMode="contain"
+            style={{ width: 260, height: 260 }}
+          />
+        )}
         <View className="mt-6 gap-2 px-2">
-          <Text className="text-white font-bold text-xl text-center">Scanner de Código de Barras</Text>
+          <Text className="text-primary dark:text-white font-bold text-xl text-center">
+            Scanner de Código de Barras
+          </Text>
 
-          <Text className="text-foreground/80 text-center leading-5">
+          <Text className="text-light-foreground dark:text-foreground/80 text-center font-sans leading-5 w-[90%] mx-auto">
             Use a câmera para escanear o código de barras do seu medidor e vincular automaticamente o dispositivo à sua
             conta no ENDE APP.
           </Text>

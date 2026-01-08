@@ -41,10 +41,13 @@ export default function VerifyContract() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar style="inverted" backgroundColor="#111111" translucent />
-      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <StatusBar style="light" backgroundColor="#111111" translucent />
+      <KeyboardAvoidingView
+        className="flex-1 bg-light-background dark:bg-background"
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
         <ScrollView
-          className="flex-1 "
+          className="flex-1"
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
           bounces={false}
@@ -56,7 +59,7 @@ export default function VerifyContract() {
           </View>
 
           <View className="flex-1 justify-end">
-            <View className="bg-foreground flex-1 rounded-t-3xl p-6 gap-10 grow">
+            <View className="bg-light-foreground/15 dark:bg-foreground flex-1 rounded-t-3xl p-6 gap-10 grow">
               <View className="flex-row items-center gap-3">
                 <View className="bg-primary p-3 rounded-lg">
                   <Feather name="file-text" size={25} color="#ffffff" />
@@ -72,7 +75,7 @@ export default function VerifyContract() {
                 <View className="gap-1.5">
                   <Text className="font-bold text-background">Número de contrato</Text>
                   <TextInput
-                    className="bg-white text-background rounded-md h-11 px-3"
+                    className="bg-light-background dark:bg-white text-background rounded-md h-11 px-3"
                     placeholder="Ex: 224144253363"
                     placeholderTextColor="#9CA3AF"
                     keyboardType="numeric"

@@ -15,6 +15,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native"
+import { useUniwind } from "uniwind"
 
 export default function CreatePassword() {
   const router = useRouter()
@@ -23,7 +24,7 @@ export default function CreatePassword() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false)
   const [success, setSuccess] = useState(false)
-
+  const { theme } = useUniwind()
   const scaleAnim = useRef(new Animated.Value(0)).current
   const isDisabled = password.length < 4
 
@@ -47,17 +48,28 @@ export default function CreatePassword() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView className="flex-1 bg-background" behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <KeyboardAvoidingView
+        className="flex-1 bg-light-background dark:bg-background"
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
         <View className="flex-1 p-6 items-center justify-center gap-6">
           <View className="w-full items-center">
-            <Image
-              source={require("../../../assets/images/ilustration-login.png")}
-              style={{ width: 260, height: 260 }}
-              resizeMode="contain"
-            />
+            {theme === "light" ? (
+              <Image
+                source={require("../../../assets/images/ilustration-bar-light.png")}
+                resizeMode="contain"
+                style={{ width: 260, height: 260 }}
+              />
+            ) : (
+              <Image
+                source={require("../../../assets/images/ilustration-bar-dark.png")}
+                resizeMode="contain"
+                style={{ width: 260, height: 260 }}
+              />
+            )}
             <View className="items-center gap-2 -mt-4">
-              <Text className="text-white font-bold text-2xl text-center">Criar chave de acesso</Text>
-              <Text className="text-foreground/80 text-center px-6">
+              <Text className="text-primary dark:text-white font-bold text-2xl text-center">Criar chave de acesso</Text>
+              <Text className="text-light-foreground font-sans dark:text-foreground/80 text-center px-6">
                 Defina uma chave de acesso segura para proteger sua conta e garantir acesso rápido ao aplicativo.
               </Text>
             </View>
@@ -65,9 +77,9 @@ export default function CreatePassword() {
 
           <View className="w-full gap-4">
             <TextInput
-              className="bg-card text-foreground rounded-md h-12 px-4"
+              className="bg-light-card dark:bg-card text-light-foreground dark:text-foreground rounded-md h-12 px-4"
               placeholder="Chave de acesso"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={theme === "light" ? "#11111150 " : "#9CA3AF"}
               secureTextEntry
               value={password}
               onChangeText={setPassword}

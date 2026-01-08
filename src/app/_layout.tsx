@@ -20,7 +20,7 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
+    <Stack screenOptions={{ animation: "ios_from_right" }}>
       <Stack.Screen name="(onboarding)/index" options={{ headerShown: false }} />
       <Stack.Screen name="(onboarding)/verifyContract" options={{ headerShown: false }} />
       <Stack.Screen name="(onboarding)/scannerBarCode" options={{ headerShown: false }} />
