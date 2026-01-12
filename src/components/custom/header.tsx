@@ -1,11 +1,13 @@
-import { Image, Text, View } from "react-native"
+import { Image, Text, View, ViewProps } from "react-native"
 import { useUniwind } from "uniwind"
 
-export function Header() {
+
+
+export function Header(props: ViewProps) {
   const { theme } = useUniwind()
 
   return (
-    <View className="relative flex flex-col mt-16 items-center justify-center">
+    <View className="relative flex flex-col mt-16 items-center justify-center" {...props}>
       {theme === "light" ? (
         <Image
           source={require("../../../assets/images/logo-light.png")}

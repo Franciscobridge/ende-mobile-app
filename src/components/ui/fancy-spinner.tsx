@@ -2,12 +2,15 @@ import { Feather } from "@expo/vector-icons"
 import { useEffect, useRef } from "react"
 import { Animated, Easing, Text, View } from "react-native"
 
-export function FancySpinner() {
+type FancySpinnerProps = {
+  title: string
+}
+
+export function FancySpinner({ title }: FancySpinnerProps) {
   const scale = useRef(new Animated.Value(1)).current
   const rotate = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
-    // Pulso (vai e volta)
     Animated.loop(
       Animated.sequence([
         Animated.timing(scale, {
@@ -52,7 +55,7 @@ export function FancySpinner() {
         <Feather name="zap" size={32} color="#FF2E2E" />
       </Animated.View>
 
-      <Text className="text-card text-sm">A verificar contrato…</Text>
+      <Text className="text-primary text-sm">{title}</Text>
     </View>
   )
 }

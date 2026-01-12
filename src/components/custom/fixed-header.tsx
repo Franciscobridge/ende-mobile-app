@@ -4,7 +4,6 @@ import { Text, TouchableOpacity, View } from "react-native"
 
 export function FixedHeader({ title }: { title: string }) {
   const pathname = usePathname()
-  console.log(pathname)
   const router = useRouter()
   return (
     <View className="px-6 py-6 flex-row items-center justify-between bg-background">
@@ -18,9 +17,9 @@ export function FixedHeader({ title }: { title: string }) {
       </View>
 
       {pathname === "/home" ? (
-        <View className="bg-card/30 p-3 rounded-full">
+        <TouchableOpacity activeOpacity={0.5} className="bg-card/30 p-3 rounded-full">
           <Feather name="bell" size={20} color="#E9E9E9" />
-        </View>
+        </TouchableOpacity>
       ) : null}
     </View>
   )

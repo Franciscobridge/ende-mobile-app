@@ -4,7 +4,7 @@ type Variant = "primary" | "outline"
 
 type ButtonProps = {
   disabled?: boolean
-  onPress: () => void
+  onPress?: () => void
   title: string
   variant?: Variant
 }

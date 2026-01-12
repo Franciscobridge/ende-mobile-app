@@ -3,18 +3,16 @@ import { FixedHeader } from "@/components/custom/fixed-header"
 import { EnergyLineChart } from "@/components/custom/line-chart"
 import { Feather } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
-import { StatusBar } from "expo-status-bar"
 import { ScrollView, Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function Home() {
   const router = useRouter()
-  const remainingBalance = 254.2
+  const remainingBalance = 14.2
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View className="flex-1 bg-background">
-        <StatusBar backgroundColor="#111111" style="inverted" />
         <FixedHeader title="Painel Central" />
 
         <ScrollView

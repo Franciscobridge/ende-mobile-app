@@ -10,7 +10,7 @@ export function EnergyLineChart() {
         labels: ["", "", "", "", "", "", ""],
         datasets: [
           {
-            data: [5, 15, 9, 18, 12, 15, 20],
+            data: [5, 5, 23, 12, 17, 12, 20],
           },
         ],
       }}
