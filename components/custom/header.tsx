@@ -10,13 +10,13 @@ export function Header(props: ViewProps) {
     <View className="relative flex flex-col mt-16 items-center justify-center" {...props}>
       {theme === "light" ? (
         <Image
-          source={require("../../../assets/images/logo-light.png")}
+          source={require("../../assets/images/logo-light.png")}
           style={{ width: 360, height: 220 }}
           resizeMode="contain"
         />
       ) : (
         <Image
-          source={require("../../../assets/images/logo-dark.png")}
+          source={require("../../assets/images/logo-dark.png")}
           style={{ width: 360, height: 200 }}
           resizeMode="contain"
         />

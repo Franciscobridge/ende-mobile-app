@@ -4,6 +4,7 @@ import { useRouter } from "expo-router"
 import { useState } from "react"
 import { Alert, Image, Modal, Text, TouchableOpacity, View } from "react-native"
 import { useUniwind } from "uniwind"
+import { BAR_CODE_TYPES_ALLOWED } from "../../constants/bar-code-allowed-types"
 
 export default function ScannerBarCode() {
   const [showCamera, setShowCamera] = useState(false)
@@ -11,7 +12,7 @@ export default function ScannerBarCode() {
   const { theme } = useUniwind()
   const [_, requestPermission] = useCameraPermissions()
   const router = useRouter()
-  const audioSource = require("../../../lib/expo-audio/barcode-scanner-beep-sound-effect.mp3")
+  const audioSource = require("../../lib/expo-audio/barcode-scanner-beep-sound-effect.mp3")
   const player = useAudioPlayer(audioSource)
   // Solicita permissão e abre a câmera
   async function handleOpenCamera() {
@@ -37,7 +38,7 @@ export default function ScannerBarCode() {
   function handleConfirm() {
     console.log("Código confirmado:", scannedData)
     setScannedData(null)
-    router.push("/(onboarding)/createPassword")
+    router.push("/(onboarding)/create-password")
   }
 
   function handleCancel() {
@@ -50,13 +51,13 @@ export default function ScannerBarCode() {
       <View className="flex-1 items-center justify-center">
         {theme === "light" ? (
           <Image
-            source={require("../../../assets/images/ilustration-bar-light.png")}
+            source={require("../../assets/images/ilustration-bar-light.png")}
             resizeMode="contain"
             style={{ width: 260, height: 260 }}
           />
         ) : (
           <Image
-            source={require("../../../assets/images/ilustration-bar-dark.png")}
+            source={require("../../assets/images/ilustration-bar-dark.png")}
             resizeMode="contain"
             style={{ width: 260, height: 260 }}
           />
@@ -66,8 +67,8 @@ export default function ScannerBarCode() {
             Scanner de Código de Barras
           </Text>
 
-          <Text className="text-light-foreground dark:text-foreground/80 text-center font-sans leading-5 w-[90%] mx-auto">
-            Use a câmera para escanear o código de barras do seu medidor e vincular automaticamente o dispositivo à sua
+          <Text className="text-light-foreground dark:text-foreground/80 text-center font-sans leading-5 mx-auto">
+            Use a câmera para escanear o código de barras do seu medidor e vincular o dispositivo à sua
             conta no ENDE APP.
           </Text>
         </View>
@@ -90,8 +91,7 @@ export default function ScannerBarCode() {
             style={{ flex: 1 }}
             facing="back"
             onBarcodeScanned={({ data, type }) => {
-              const allowedTypes = ["ean13", "code128", "upc"]
-              if (allowedTypes.includes(type)) {
+              if (BAR_CODE_TYPES_ALLOWED.includes(type)) {
                 handleBarCode(data)
               }
             }}

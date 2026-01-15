@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import { Feather } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { Fragment, useEffect, useRef, useState } from "react"
@@ -16,6 +15,7 @@ import {
   View,
 } from "react-native"
 import { useUniwind } from "uniwind"
+import { Button } from "../../components/ui/button"
 
 export default function CreatePassword() {
   const router = useRouter()
@@ -56,13 +56,13 @@ export default function CreatePassword() {
           <View className="w-full items-center">
             {theme === "light" ? (
               <Image
-                source={require("../../../assets/images/ilustration-bar-light.png")}
+                source={require("../../assets/images/ilustration-bar-light.png")}
                 resizeMode="contain"
                 style={{ width: 260, height: 260 }}
               />
             ) : (
               <Image
-                source={require("../../../assets/images/ilustration-bar-dark.png")}
+                source={require("../../assets/images/ilustration-bar-dark.png")}
                 resizeMode="contain"
                 style={{ width: 260, height: 260 }}
               />

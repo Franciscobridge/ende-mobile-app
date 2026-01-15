@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button"
 import { Feather } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { Image, ScrollView, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useUniwind } from "uniwind"
+import { Button } from "../../components/ui/button"
 
 export default function InfoCreateAccount() {
 
@@ -17,13 +17,13 @@ export default function InfoCreateAccount() {
         <View className="items-start mb-12">
           {theme === "light" ? (
             <Image
-              source={require("../../../assets/images/logo-light.png")}
+              source={require("../../assets/images/logo-light.png")}
               style={{ width: 120, height: 120 }}
               resizeMode="contain"
             />
           ) : (
             <Image
-              source={require("../../../assets/images/logo-dark.png")}
+              source={require("../../assets/images/logo-dark.png")}
               style={{ width: 120, height: 120 }}
               resizeMode="contain"
             />

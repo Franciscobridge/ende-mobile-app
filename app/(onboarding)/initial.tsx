@@ -1,6 +1,3 @@
-import { Header } from "@/components/custom/header"
-import { ModalVerifyContract } from "@/components/custom/verify-contract/modal"
-import { Button } from "@/components/ui/button"
 import { Feather } from "@expo/vector-icons"
 import { Link, useRouter } from "expo-router"
 import { useEffect, useRef, useState } from "react"
@@ -16,6 +13,9 @@ import {
   View,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { Header } from "../../components/custom/header"
+import { ModalVerifyContract } from "../../components/custom/verify-contract/modal"
+import { Button } from "../../components/ui/button"
 
 export default function Initial() {
   const router = useRouter()

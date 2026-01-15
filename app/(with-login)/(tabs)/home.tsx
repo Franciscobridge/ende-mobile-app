@@ -1,10 +1,10 @@
-import { EnergyUsageIndicator } from "@/components/custom/energy-usage-indicator"
-import { FixedHeader } from "@/components/custom/fixed-header"
-import { EnergyLineChart } from "@/components/custom/line-chart"
 import { Feather } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { ScrollView, Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { EnergyUsageIndicator } from "../../../components/custom/energy-usage-indicator"
+import { FixedHeader } from "../../../components/custom/fixed-header"
+import { EnergyLineChart } from "../../../components/custom/line-chart"
 
 export default function Home() {
   const router = useRouter()

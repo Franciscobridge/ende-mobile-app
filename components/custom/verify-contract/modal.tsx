@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { FancySpinner } from "@/components/ui/fancy-spinner";
 import { Dispatch, SetStateAction } from "react";
 import { Modal, Text, View } from "react-native";
+import { Button } from "../../../components/ui/button";
+import { FancySpinner } from "../../../components/ui/fancy-spinner";
 import { Info } from "./info-modal";
 
 type ModalProps = {

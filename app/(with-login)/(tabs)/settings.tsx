@@ -1,5 +1,5 @@
-import { FixedHeader } from "@/components/custom/fixed-header"
 import { Text, View } from "react-native"
+import { FixedHeader } from "../../../components/custom/fixed-header"
 export default function Settings() {
   return (
     <View className="flex-1 bg-background">
