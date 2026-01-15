@@ -16,6 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { Header } from "../../components/custom/header"
 import { ModalVerifyContract } from "../../components/custom/verify-contract/modal"
 import { Button } from "../../components/ui/button"
+import { ContractData } from "../../constants/contract-data-user"
 
 export default function Initial() {
   const router = useRouter()
@@ -28,13 +29,6 @@ export default function Initial() {
   const [loading, setLoading] = useState(false)
 
   const isDisabled = numberContract.trim() === ""
-
-  const contractData = {
-    name: "Manuel Sousa",
-    email: "manuel@email.com",
-    phone: "+244 923 456 789",
-    address: "Rua Principal, Nº 45, Luanda",
-  }
 
   useEffect(() => {
     const id = translateY.addListener(({ value }) => {
@@ -199,7 +193,7 @@ export default function Initial() {
         )}
 
         <ModalVerifyContract
-          contractData={contractData}
+          contractData={ContractData}
           handleConfirm={handleConfirm}
           loading={loading}
           isDialogVisible={isDialogVisible}

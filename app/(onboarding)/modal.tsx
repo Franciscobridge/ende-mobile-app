@@ -4,8 +4,6 @@ import { CustomBottomSheetNoRef } from "./../../components/custom/bottom-sheet";
 
 export default function ModalBottomShet() {
 
-
-
   return (
     <BottomSheetModalProvider>
 
@@ -24,24 +22,32 @@ export default function ModalBottomShet() {
         {/* <TouchableOpacity style={{ backgroundColor: "red" }}><Text>Okkkk</Text></TouchableOpacity> */}
 
 
-        <CustomBottomSheetNoRef button={{ component: <TouchableOpacity style={{ backgroundColor: "red" }}><Text>Okkkk</Text></TouchableOpacity> }} renderContent={() => <View style={{ backgroundColor: "yellow" }}>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-          <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
-        </View>} />
+        <CustomBottomSheetNoRef
+          button={{
+            component:
+              <TouchableOpacity style={{ backgroundColor: "red" }}>
+                <Text>Okkkk</Text>
+              </TouchableOpacity>
+          }}
+          renderContent={() =>
+            <View style={{ backgroundColor: "yellow" }}>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+              <Text>OOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+            </View>} />
 
 
       </View>

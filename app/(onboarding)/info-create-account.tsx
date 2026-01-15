@@ -31,12 +31,10 @@ export default function InfoCreateAccount() {
           <Text className="text-light-foreground dark:text-foreground font-bold text-lg -mt-6">Empresa Nacional Distribuidora de Energia</Text>
         </View>
 
-        {/* Introdução */}
         <Text className="text-background dark:text-white font-sans mb-8">
           Se ainda não possui um contrato com a ENDE, siga os passos abaixo:
         </Text>
 
-        {/* Passo 1: Documentos necessários */}
         <View className="flex-row items-start gap-4 bg-muted p-4 rounded-lg mb-4">
           <View className="w-14 h-14 bg-primary/10 dark:bg-card rounded-full items-center justify-center">
             <Feather name="file-plus" size={24} color={theme === "light" ? "#D40000" : "#fff"} />
@@ -50,7 +48,6 @@ export default function InfoCreateAccount() {
           </View>
         </View>
 
-        {/* Passo 2: Dirija-se ao posto da ENDE */}
         <View className="flex-row items-start gap-4 bg-muted p-4 rounded-lg mb-4">
           <View className="w-14 h-14 bg-primary/10 dark:bg-card rounded-full items-center justify-center">
             <Feather name="map-pin" size={24} color={theme === "light" ? "#D40000" : "#fff"} />
@@ -63,7 +60,6 @@ export default function InfoCreateAccount() {
           </View>
         </View>
 
-        {/* Passo 3: Preenchimento do formulário */}
         <View className="flex-row items-start gap-4 bg-muted p-4 rounded-lg mb-4">
           <View className="w-14 h-14 bg-primary/10 dark:bg-card rounded-full items-center justify-center">
             <Feather name="edit-3" size={24} color={theme === "light" ? "#D40000" : "#fff"} />
@@ -76,7 +72,6 @@ export default function InfoCreateAccount() {
           </View>
         </View>
 
-        {/* Passo 4: Pagamento da taxa */}
         <View className="flex-row items-start gap-4 bg-muted p-4 rounded-lg">
           <View className="w-14 h-14 bg-primary/10 dark:bg-card rounded-full items-center justify-center">
             <Feather name="credit-card" size={24} color={theme === "light" ? "#D40000" : "#fff"} />

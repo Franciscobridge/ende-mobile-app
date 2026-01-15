@@ -14,7 +14,7 @@ export default function Index() {
       <SafeAreaView style={{ flex: 1 }}>
         <View className='flex-1 items-center justify-center gap-3.5'>
           <FancySpinner title='Carregando...' />
-          <Button title='Avançar' onPress={() => router.push("/(onboarding)/modal")} />
+          <Button title='Avançar' onPress={() => router.push("/(onboarding)/initial")} />
         </View>
       </SafeAreaView>
     </View>

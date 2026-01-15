@@ -1,6 +1,5 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-
 export function useSafeAreaViewHook() {
   const insets = useSafeAreaInsets();
   return {
