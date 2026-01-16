@@ -2,7 +2,7 @@ import { Text, View } from "react-native"
 import { AnimatedCircularProgress } from "react-native-circular-progress"
 
 export function EnergyUsageIndicator() {
-  const consumption = 12
+  const consumption = 72
 
   return (
     <AnimatedCircularProgress

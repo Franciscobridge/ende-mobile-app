@@ -1,3 +1,4 @@
+import ButtonSquare from "@/components/custom/button-square"
 import { Feather } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { ScrollView, Text, TouchableOpacity, View } from "react-native"
@@ -8,7 +9,7 @@ import { EnergyLineChart } from "../../../components/custom/line-chart"
 
 export default function Home() {
   const router = useRouter()
-  const remainingBalance = 14.2
+  const remainingBalance = 756.7
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -35,31 +36,10 @@ export default function Home() {
             </View>
           </View>
 
-          <View className="flex-row w-full items-center justify-between px-6">
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => router.push("/(with-login)/instant-consumption")}
-              className="size-24 bg-green-400/5 rounded-lg items-center gap-1.5 justify-center"
-            >
-              <Feather name="zap" size={29} color="#05df72" />
-              <Text className="text-white text-xs font-bold text-center ">Consumo instantâneo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => router.push("/(with-login)/expected-end")}
-              className="size-24 bg-green-400/5 rounded-lg items-center justify-center gap-1.5"
-            >
-              <Feather name="clock" size={29} color="#05df72" />
-              <Text className="text-white font-bold text-xs text-center">Término previsto</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => router.push("/(with-login)/add-energy")}
-              className="size-24 bg-blue-500/10 rounded-lg items-center justify-center gap-1.5"
-            >
-              <Feather name="credit-card" size={29} color="#447DF7" />
-              <Text className="text-white font-bold  text-xs text-center ">Recarregar Energia</Text>
-            </TouchableOpacity>
+          <View className="flex-row mx-6 bg-red-600">
+            <ButtonSquare description="Consumo instantâneo" icon="zap" />
+            <ButtonSquare description="Término previsto" icon="clock" />
+            <ButtonSquare description="Recarregar Energia" icon="credit-card" variant="secundary" />
           </View>
           <View className="w-full px-6">
             <View className="bg-card/20 overflow-hidden w-full h-36 rounded-lg p-3">
@@ -117,3 +97,28 @@ export default function Home() {
     </SafeAreaView>
   )
 }
+
+{/* <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => router.push("/(with-login)/instant-consumption")}
+              className="size-24 bg-green-400/5 rounded-lg items-center gap-1.5 justify-center"
+            >
+              <Feather name="zap" size={29} color="#05df72" />
+              <Text className="text-white text-xs font-bold text-center ">Consumo instantâneo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => router.push("/(with-login)/expected-end")}
+              className="size-24 bg-green-400/5 rounded-lg items-center justify-center gap-1.5"
+            >
+              <Feather name="clock" size={29} color="#05df72" />
+              <Text className="text-white font-bold text-xs text-center">Término previsto</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => router.push("/(with-login)/add-energy")}
+              className="size-24 bg-blue-500/10 rounded-lg items-center justify-center gap-1.5"
+            >
+              <Feather name="credit-card" size={29} color="#447DF7" />
+              <Text className="text-white font-bold  text-xs text-center ">Recarregar Energia</Text>
+            </TouchableOpacity> */}

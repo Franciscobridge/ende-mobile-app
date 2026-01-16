@@ -9,8 +9,9 @@ export function CustomBottomSheetNoRef({ renderContent: Component, modalProps, m
     handlePresentModalPress,
     handleCloseModalPress,
     backDropComponent,
+    backgroundColorBothThemes,
     safeBottomArea,
-    setBorderTopRadius,
+    textColorBothThemes,
   } = useNoRef();
 
   return (
@@ -21,12 +22,12 @@ export function CustomBottomSheetNoRef({ renderContent: Component, modalProps, m
       </TouchableOpacity>
 
       <BottomSheetModal
-        backgroundStyle={{ backgroundColor: modalProps?.backgroundColor || "red" }}
+        backgroundStyle={{ backgroundColor: modalProps?.backgroundColor || backgroundColorBothThemes }}
         ref={bottomSheetModalRef}
         onDismiss={modalProps?.onDismiss}
         // snapPoints={modalProps?.snapPoints}
         backdropComponent={backDropComponent}
-        handleIndicatorStyle={{ backgroundColor: "red", ...(modalHeaderProps?.indicatorStyle as object) }}
+        handleIndicatorStyle={{ backgroundColor: textColorBothThemes, ...(modalHeaderProps?.indicatorStyle as object) }}
         handleComponent={modalHeaderProps?.component ? () => <>{modalHeaderProps.component && <modalHeaderProps.component />}</> : undefined}
         // handleStyle={{ backgroundColor: modalProps?.backgroundColor || backgroundColorBothThemes, ...setBorderTopRadius(modalHeaderProps?.borderTopRadius) }}
         enablePanDownToClose={modalProps?.enablePanDownToClose}
@@ -34,11 +35,10 @@ export function CustomBottomSheetNoRef({ renderContent: Component, modalProps, m
       >
         <BottomSheetView
           style={{
-            backgroundColor: modalProps?.backgroundColor || "red",
+            backgroundColor: modalProps?.backgroundColor || backgroundColorBothThemes,
             paddingBottom: safeBottomArea,
             borderTopRightRadius: 16,
-            borderTopLeftRadius: 16,
-
+            borderTopLeftRadius: 16
           }}
         >
           <Component />

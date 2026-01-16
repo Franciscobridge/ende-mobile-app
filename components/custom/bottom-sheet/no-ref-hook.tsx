@@ -1,16 +1,15 @@
 // BottomSheet
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCallback, useRef } from "react";
-import { useSafeAreaViewHook } from "../../../lib/safe-area-view/use-safe-area-view-hook";
 // import { useColorHook } from "@/lib/nativewind/useColors";
-
+import { useSafeAreaViewHook } from "@/lib/safe-area-view/use-safe-area-view-hook";
 // import { setBorderTopRadius } from "@/constants/app";
 // import { UseNoRefProps } from "./no-ref-types";
 
 export const useNoRef = () => {
-  // const { backgroundColorBothThemes, textColorBothThemes } = useColorHook();
+  const backgroundColorBothThemes = "#000", textColorBothThemes = "#000"
+
   const { safeBottomArea } = useSafeAreaViewHook();
-  const setBorderTopRadius = 16
 
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   // const snapPoints = useMemo(() => [...(snapPointsFromUser ? snapPointsFromUser : [])], [snapPointsFromUser]);
@@ -31,5 +30,5 @@ export const useNoRef = () => {
 
 
 
-  return { bottomSheetModalRef, safeBottomArea, backDropComponent, setBorderTopRadius, handlePresentModalPress, handleCloseModalPress };
+  return { bottomSheetModalRef, backgroundColorBothThemes, textColorBothThemes, safeBottomArea, backDropComponent, handlePresentModalPress, handleCloseModalPress };
 };
