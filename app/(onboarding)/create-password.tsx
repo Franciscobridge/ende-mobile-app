@@ -1,6 +1,8 @@
+import { Input } from "@/components/ui/input"
 import { Feather } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { Fragment, useEffect, useRef, useState } from "react"
+import { useForm } from "react-hook-form"
 import {
   Animated,
   Image,
@@ -9,10 +11,9 @@ import {
   Modal,
   Platform,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  View
 } from "react-native"
 import { useUniwind } from "uniwind"
 import { Button } from "../../components/ui/button"
@@ -20,16 +21,47 @@ import { Button } from "../../components/ui/button"
 export default function CreatePassword() {
   const router = useRouter()
 
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false)
   const [success, setSuccess] = useState(false)
   const { theme } = useUniwind()
   const scaleAnim = useRef(new Animated.Value(0)).current
-  const isDisabled = password.length < 4
+
+  const { control, handleSubmit, getValues } = useForm()
+
+  function handleCreatePassword() {
+    setModalVisible(true)
+    const { password } = getValues()
+    console.log(password)
+    return password;
+  }
+
+  function handleConfirmPassword() {
+    const { confirmPassword } = getValues()
+    console.log(confirmPassword)
+    return confirmPassword;
+  }
+
+  // function handleConfirmPassword(data: any) {
+  //   if (data.confirmPassword === data.password) {
+  //     setSuccess(true)
+
+  //     Animated.spring(scaleAnim, {
+  //       toValue: 1,
+  //       useNativeDriver: true,
+  //       friction: 5,
+  //       tension: 150,
+  //     }).start()
+
+  //     setTimeout(() => {
+  //       setModalVisible(false)
+  //       router.replace("/(with-login)/(tabs)/home")
+  //     }, 1500)
+  //   }
+  // }
 
   useEffect(() => {
-    if (confirmPassword && confirmPassword === password) {
+    console.log(handleConfirmPassword())
+    if (handleConfirmPassword() === handleCreatePassword()) {
       setSuccess(true)
 
       Animated.spring(scaleAnim, {
@@ -44,7 +76,7 @@ export default function CreatePassword() {
         router.replace("/(with-login)/(tabs)/home")
       }, 1500)
     }
-  }, [confirmPassword, scaleAnim, router.replace, password])
+  }, [handleConfirmPassword(), scaleAnim, router.replace])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -52,17 +84,17 @@ export default function CreatePassword() {
         className="flex-1 bg-light-background dark:bg-background"
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <View className="flex-1 p-6 items-center justify-center gap-6">
+        <View className="flex-1 p-4 items-center justify-center gap-6">
           <View className="w-full items-center">
             {theme === "light" ? (
               <Image
-                source={require("../../assets/images/ilustration-bar-light.png")}
+                source={require("../../assets/images/ilustration-login-light.png")}
                 resizeMode="contain"
                 style={{ width: 260, height: 260 }}
               />
             ) : (
               <Image
-                source={require("../../assets/images/ilustration-bar-dark.png")}
+                source={require("../../assets/images/ilustration-login-dark.png")}
                 resizeMode="contain"
                 style={{ width: 260, height: 260 }}
               />
@@ -76,16 +108,22 @@ export default function CreatePassword() {
           </View>
 
           <View className="w-full gap-4">
-            <TextInput
-              className="bg-light-card dark:bg-card text-light-foreground dark:text-foreground rounded-md h-12 px-4"
-              placeholder="Chave de acesso"
-              placeholderTextColor={theme === "light" ? "#11111150 " : "#9CA3AF"}
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
+            <Input
+              formProps={{
+                name: "password",
+                control
+              }}
+              inputProps={{
+                placeholder: "Chave de acesso",
+                className: "bg-light-card dark:bg-card text-light-foreground dark:text-foreground rounded-md h-12 px-4",
+                placeholderTextColor: theme === "light" ? "#11111150" : "#9CA3AF",
+                secureTextEntry: true,
+
+              }}
+
             />
 
-            <Button onPress={() => setModalVisible(true)} title="Criar chave de acesso" disabled={isDisabled} />
+            <Button onPress={handleCreatePassword} title="Criar chave de acesso" />
           </View>
         </View>
 
@@ -104,15 +142,17 @@ export default function CreatePassword() {
                         <Feather name="x" size={24} color="#EF4444" />
                       </TouchableOpacity>
                     </View>
-
-                    <TextInput
-                      className="bg-white text-background rounded-md h-12 px-4 w-full mt-4"
-                      placeholder="Confirmar chave de acesso"
-                      placeholderTextColor="#9CA3AF"
-                      secureTextEntry
-                      value={confirmPassword}
-                      onChangeText={setConfirmPassword}
-                      autoFocus
+                    <Input
+                      formProps={{
+                        name: "confirmPassword",
+                        control
+                      }}
+                      inputProps={{
+                        className: "bg-white text-background rounded-md h-12 px-4 w-full mt-4",
+                        placeholder: "Confirmar chave de acesso",
+                        secureTextEntry: true,
+                        autoFocus: true
+                      }}
                     />
                   </Fragment>
                 ) : (

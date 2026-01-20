@@ -1,7 +1,6 @@
-import { Dimensions } from "react-native"
 import { LineChart } from "react-native-chart-kit"
 
-const width = Dimensions.get("window").width
+// const width = Dimensions.get("window").width
 
 export function EnergyLineChart() {
   return (
@@ -10,11 +9,11 @@ export function EnergyLineChart() {
         labels: ["", "", "", "", "", "", ""],
         datasets: [
           {
-            data: [5, 5, 23, 12, 17, 12, 20],
+            data: [5, 5, 23, 12, 17, 12, 18],
           },
         ],
       }}
-      width={width - 25}
+      width={300}
       height={80}
       bezier
       withDots={false}
@@ -32,7 +31,6 @@ export function EnergyLineChart() {
       style={{
         paddingRight: 0,
         backgroundColor: "#161616",
-        marginHorizontal: "auto",
       }}
     />
   )

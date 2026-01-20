@@ -47,7 +47,7 @@ export default function ScannerBarCode() {
   }
 
   return (
-    <View className="flex-1 bg-light-background dark:bg-background px-6">
+    <View className="flex-1 bg-light-background dark:bg-background px-4">
       <View className="flex-1 items-center justify-center">
         {theme === "light" ? (
           <Image

@@ -28,11 +28,10 @@ export default function RootLayout() {
       <BottomSheetModalProvider>
         <Stack>
           <Stack.Screen options={{ headerShown: false }} name="(onboarding)/index" />
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/modal" />
           <Stack.Screen options={{ headerShown: false }} name="(onboarding)/initial" />
+          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/info-create-account" />
           <Stack.Screen options={{ headerShown: false }} name="(onboarding)/scanner-bar-code" />
           <Stack.Screen options={{ headerShown: false }} name="(onboarding)/create-password" />
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/info-create-account" />
           <Stack.Screen options={{ headerShown: false }} name="auth/login" />
           <Stack.Screen options={{ headerShown: false }} name="(with-login)/(tabs)" />
           <Stack.Screen options={{ headerShown: false }} name="(with-login)/instant-consumption" />

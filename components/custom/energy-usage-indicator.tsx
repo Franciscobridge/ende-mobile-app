@@ -17,7 +17,7 @@ export function EnergyUsageIndicator() {
           <Text className={`font-bold text-xl ${consumption >= 20 ? "text-green-400" : "text-primary"}`}>
             {Math.round(fill)}%
           </Text>
-          <Text className="font-bold text-foreground text-center text-xs">Consumo de Energia</Text>
+          <Text className="font-bold text-light-foreground dark:text-foreground text-center text-xs">Consumo de Energia</Text>
         </View>
       )}
     </AnimatedCircularProgress>

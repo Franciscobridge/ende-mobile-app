@@ -1,22 +1,26 @@
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Feather } from '@expo/vector-icons'
 import { Link } from 'expo-router'
-import React, { Dispatch, SetStateAction } from 'react'
-import { KeyboardAvoidingView, Platform, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { KeyboardAvoidingView, Platform, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { CustomBottomSheetWithRef } from '../bottom-sheet'
 
 type BottomSheetVerifyContractProps = {
   bottomSheetModalRef: any
-  // handleOpenBottomSheet: () => void
   handleCloseBottomSheet: () => void
-  numberContract: string
-  setNumberContract: Dispatch<SetStateAction<string>>
-  handleVerify: () => void
-  isDisabled: boolean
+  handleVerify: (data: any) => void
 }
 
 
-export default function BottomSheetVerifyContract({ bottomSheetModalRef, handleVerify, handleCloseBottomSheet, isDisabled, numberContract, setNumberContract }: BottomSheetVerifyContractProps) {
+export function BottomSheetVerifyContract({ bottomSheetModalRef, handleVerify, handleCloseBottomSheet }: BottomSheetVerifyContractProps) {
+
+
+  const [numberContract, setNumberContract] = useState("")
+  const isDisabled = numberContract.trim() === ""
+
+  const { control, handleSubmit } = useForm()
 
   return (
     <View>
@@ -30,10 +34,10 @@ export default function BottomSheetVerifyContract({ bottomSheetModalRef, handleV
           >
             <View
               style={{
-                backgroundColor: "#fff",
                 borderTopLeftRadius: 24,
                 borderTopRightRadius: 24,
-                padding: 24,
+                paddingVertical: 24,
+                paddingHorizontal: 18,
                 gap: 24,
               }}
             >
@@ -58,28 +62,31 @@ export default function BottomSheetVerifyContract({ bottomSheetModalRef, handleV
               <View className="gap-4">
                 <View className="gap-1.5">
                   <Text className="font-bold">Número de contrato</Text>
-                  <TextInput
-                    className="bg-gray-100 rounded-md h-11 px-3"
-                    placeholder="Ex: 224144253363"
-                    keyboardType="numeric"
-                    value={numberContract}
-                    onChangeText={setNumberContract}
+                  <Input
+                    formProps={{
+                      name: "numberContract",
+                      control
+                    }}
+                    inputProps={{
+                      placeholder: "Ex: 224144253363",
+                      keyboardType: "numeric"
+                    }}
                   />
                 </View>
 
-                <Button onPress={handleVerify} disabled={isDisabled} title="Verificar" />
+                <Button onPress={handleSubmit(handleVerify)} title="Verificar" />
 
                 <Link
                   href="/(onboarding)/info-create-account"
                   className="text-right text-primary font-medium"
                 >
                   <TouchableWithoutFeedback onPress={handleCloseBottomSheet}>
-                    <Text>Criar um contrato ENDE</Text>
+                    <Text className='font-sans'>Criar um contrato ENDE</Text>
                   </TouchableWithoutFeedback>
                 </Link>
               </View>
 
-              <View className="w-full h-28" />
+              <View className="w-full h-24 " />
             </View>
           </KeyboardAvoidingView>
         }

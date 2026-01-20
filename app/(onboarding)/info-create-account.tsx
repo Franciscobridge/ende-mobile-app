@@ -12,7 +12,7 @@ export default function InfoCreateAccount() {
   const router = useRouter()
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-light-background dark:bg-background px-5">
+      <ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-light-background dark:bg-background px-4">
         {/* Cabeçalho */}
         <View className="items-start mb-12">
           {theme === "light" ? (

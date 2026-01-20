@@ -1,13 +1,18 @@
 import { Feather } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
+import { useUniwind } from "uniwind"
+
 
 export default function TabsLayout() {
+
+  const { theme } = useUniwind()
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "#111111",
+          backgroundColor: theme === "light" ? "#F7F7F7" : "#111111",
           borderTopWidth: 0,
           paddingTop: 10,
           height: 68,

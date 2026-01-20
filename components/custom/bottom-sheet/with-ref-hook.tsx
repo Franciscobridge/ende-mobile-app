@@ -7,7 +7,7 @@ import { useSafeAreaViewHook } from "@/lib/safe-area-view/use-safe-area-view-hoo
 // import { useWithRefProps } from "./no-ref-types";
 
 export const useWithRef = () => {
-  const backgroundColorBothThemes = "#000", textColorBothThemes = "#000"
+  const backgroundColorBothThemes = "#fff", textColorBothThemes = "#ooo"
   const { safeBottomArea } = useSafeAreaViewHook();
 
   // const bottomSheetModalRef = useRef<BottomSheetModal>(null);

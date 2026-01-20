@@ -18,10 +18,11 @@ export default function ButtonSquare({ icon, description, variant = "primary" }:
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={() => router.push("/(with-login)/instant-consumption")}
-      className={`${variant === "primary" && "bg-green-400/5"} ${variant === "secundary" && "bg-blue-500/10"} rounded-lg items-center gap-1.5 justify-center`}
+      // className={`${variant === "primary" && "bg-green-400/5"} ${variant === "secundary" && "bg-blue-500/10"} rounded-lg items-center justify-center`}
+      className={`${variant === "primary" && "bg-green-400/5"} ${variant === "secundary" && "bg-blue-500/10"} flex-1 rounded-lg items-center justify-center py-2`}
     >
       <Feather name={icon} size={29} color={variant === "primary" ? "#05df72" : "#447DF7"} />
-      <Text className="text-white text-xs font-bold text-center w-[80%]">{description}</Text>
+      <Text className="text-light-foreground dark:text-white text-xs font-bold text-center w-[70%]">{description}</Text>
     </TouchableOpacity>
   )
 }

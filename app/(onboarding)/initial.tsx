@@ -1,11 +1,8 @@
 import { useCustomBottomSheetWithRef } from "@/components/custom/bottom-sheet"
-import BottomSheetVerifyContract from "@/components/custom/verify-contract/bottom-sheet"
+import { BottomSheetVerifyContract } from "@/components/custom/verify-contract/bottom-sheet"
 import { useRouter } from "expo-router"
 import { useState } from "react"
-import {
-  Text,
-  View
-} from "react-native"
+import { Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Header } from "../../components/custom/header"
 import { ModalVerifyContract } from "../../components/custom/verify-contract/modal"
@@ -14,20 +11,17 @@ import { ContractData } from "../../constants/contract-data-user"
 
 export default function Initial() {
   const router = useRouter()
-  const [numberContract, setNumberContract] = useState("")
+
   const [isDialogVisible, setIsDialogVisible] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const [bottomSheetModalRef, handleOpenBottomSheet, handleCloseBottomSheet] = useCustomBottomSheetWithRef()
 
-  const isDisabled = numberContract.trim() === ""
-
-
-  function handleVerify() {
+  function handleVerify(data: any) {
     setIsDialogVisible(true)
     handleCloseBottomSheet()
     setLoading(true)
-
+    console.log(data)
     setTimeout(() => {
       setLoading(false)
     }, 1800)
@@ -65,9 +59,6 @@ export default function Initial() {
         <BottomSheetVerifyContract
           bottomSheetModalRef={bottomSheetModalRef}
           handleVerify={handleVerify}
-          isDisabled={isDisabled}
-          numberContract={numberContract}
-          setNumberContract={setNumberContract}
           handleCloseBottomSheet={handleCloseBottomSheet}
         />
 
