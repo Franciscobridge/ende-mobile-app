@@ -1,10 +1,11 @@
+import { BAR_CODE_TYPES_ALLOWED } from "@/constants/bar-code-allowed-types"
 import { useAudioPlayer } from "expo-audio"
 import { CameraView, useCameraPermissions } from "expo-camera"
 import { useRouter } from "expo-router"
 import { useState } from "react"
 import { Alert, Image, Modal, Text, TouchableOpacity, View } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
 import { useUniwind } from "uniwind"
-import { BAR_CODE_TYPES_ALLOWED } from "../../constants/bar-code-allowed-types"
 
 export default function ScannerBarCode() {
   const [showCamera, setShowCamera] = useState(false)
@@ -47,129 +48,133 @@ export default function ScannerBarCode() {
   }
 
   return (
-    <View className="flex-1 bg-light-background dark:bg-background px-4">
-      <View className="flex-1 items-center justify-center">
-        {theme === "light" ? (
-          <Image
-            source={require("../../assets/images/ilustration-bar-light.png")}
-            resizeMode="contain"
-            style={{ width: 260, height: 260 }}
-          />
-        ) : (
-          <Image
-            source={require("../../assets/images/ilustration-bar-dark.png")}
-            resizeMode="contain"
-            style={{ width: 260, height: 260 }}
-          />
-        )}
-        <View className="mt-6 gap-2 px-2">
-          <Text className="text-primary dark:text-white font-bold text-xl text-center">
-            Scanner de Código de Barras
-          </Text>
-
-          <Text className="text-light-foreground dark:text-foreground/80 text-center font-sans leading-5 mx-auto">
-            Use a câmera para escanear o código de barras do seu medidor e vincular o dispositivo à sua
-            conta no ENDE APP.
-          </Text>
-        </View>
-      </View>
-
-      {/* Botão fixo */}
-      <View className="pb-8">
-        <TouchableOpacity
-          className="rounded-lg px-6 py-3 items-center bg-primary"
-          activeOpacity={0.7}
-          onPress={handleOpenCamera}
-        >
-          <Text className="text-white font-bold text-base">Escanear código</Text>
-        </TouchableOpacity>
-      </View>
-
-      <Modal visible={showCamera} animationType="slide">
-        <View className="flex-1">
-          <CameraView
-            style={{ flex: 1 }}
-            facing="back"
-            onBarcodeScanned={({ data, type }) => {
-              if (BAR_CODE_TYPES_ALLOWED.includes(type)) {
-                handleBarCode(data)
-              }
-            }}
-          />
-          <View
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                flex: 1,
-                width: "100%",
-                backgroundColor: "rgba(0,0,0,0.6)",
-              }}
-            />
-
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
-
-              <View
-                style={{
-                  width: 250,
-                  height: 150,
-                  borderWidth: 2,
-                  borderStyle: "dashed",
-                  borderColor: "#555555",
-                  borderRadius: 12,
-                }}
+    <View className="flex-1 bg-background">
+      <SafeAreaView style={{ flex: 1 }}>
+        <View className="flex-1 bg-light-background dark:bg-background px-4">
+          <View className="flex-1 items-center justify-center">
+            {theme === "light" ? (
+              <Image
+                source={require("../../assets/images/ilustration-bar-light.png")}
+                resizeMode="contain"
+                style={{ width: 260, height: 260 }}
               />
+            ) : (
+              <Image
+                source={require("../../assets/images/ilustration-bar-dark.png")}
+                resizeMode="contain"
+                style={{ width: 260, height: 260 }}
+              />
+            )}
+            <View className="mt-6 gap-2 px-2">
+              <Text className="text-primary dark:text-white font-bold text-xl text-center">
+                Scanner de Código de Barras
+              </Text>
 
-              <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
+              <Text className="text-light-foreground dark:text-foreground/80 text-center font-sans leading-5 mx-auto">
+                Use a câmera para escanear o código de barras do seu medidor e vincular o dispositivo à sua
+                conta no ENDE APP.
+              </Text>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                width: "100%",
-                backgroundColor: "rgba(0,0,0,0.6)",
-              }}
-            />
           </View>
 
-          <View className="absolute bottom-5 right-8 left-8">
-            <TouchableOpacity className="bg-red-500 rounded-lg py-3 items-center" onPress={() => setShowCamera(false)}>
-              <Text className="text-white font-bold">Cancelar</Text>
+          {/* Botão fixo */}
+          <View className="pb-8">
+            <TouchableOpacity
+              className="rounded-lg px-6 py-3 items-center bg-primary"
+              activeOpacity={0.7}
+              onPress={handleOpenCamera}
+            >
+              <Text className="text-white font-bold text-base">Escanear código</Text>
             </TouchableOpacity>
           </View>
-        </View>
-      </Modal>
 
-      <Modal visible={scannedData !== null} transparent animationType="fade">
-        <View className="flex-1 bg-black/60 justify-center items-center px-6">
-          <View className="bg-foreground w-full rounded-2xl p-6 gap-4">
-            <Text className="text-xl font-bold text-background text-center">Confirmar Código</Text>
-            <Text className="text-card text-center">
-              O código lido é:
-              {"\n"}
-              <Text className="font-bold">{scannedData}</Text>
-            </Text>
+          <Modal visible={showCamera} animationType="slide">
+            <View className="flex-1">
+              <CameraView
+                style={{ flex: 1 }}
+                facing="back"
+                onBarcodeScanned={({ data, type }) => {
+                  if (BAR_CODE_TYPES_ALLOWED.includes(type)) {
+                    handleBarCode(data)
+                  }
+                }}
+              />
+              <View
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    width: "100%",
+                    backgroundColor: "rgba(0,0,0,0.6)",
+                  }}
+                />
 
-            <View className="flex-row justify-between gap-4 mt-4">
-              <TouchableOpacity className="flex-1 bg-red-500 py-3 rounded-lg items-center" onPress={handleCancel}>
-                <Text className="text-white font-bold">Cancelar</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="flex-1 bg-green-500 py-3 rounded-lg items-center" onPress={handleConfirm}>
-                <Text className="text-white font-bold">Confirmar</Text>
-              </TouchableOpacity>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
+
+                  <View
+                    style={{
+                      width: 250,
+                      height: 150,
+                      borderWidth: 2,
+                      borderStyle: "dashed",
+                      borderColor: "#555555",
+                      borderRadius: 12,
+                    }}
+                  />
+
+                  <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)" }} />
+                </View>
+
+                <View
+                  style={{
+                    flex: 1,
+                    width: "100%",
+                    backgroundColor: "rgba(0,0,0,0.6)",
+                  }}
+                />
+              </View>
+
+              <View className="absolute bottom-5 right-8 left-8">
+                <TouchableOpacity className="bg-red-500 rounded-lg py-3 items-center" onPress={() => setShowCamera(false)}>
+                  <Text className="text-white font-bold">Cancelar</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+          </Modal>
+
+          <Modal visible={scannedData !== null} transparent animationType="fade">
+            <View className="flex-1 bg-black/60 justify-center items-center px-6">
+              <View className="bg-foreground w-full rounded-2xl p-6 gap-4">
+                <Text className="text-xl font-bold text-background text-center">Confirmar Código</Text>
+                <Text className="text-card text-center">
+                  O código lido é:
+                  {"\n"}
+                  <Text className="font-bold">{scannedData}</Text>
+                </Text>
+
+                <View className="flex-row justify-between gap-4 mt-4">
+                  <TouchableOpacity className="flex-1 bg-red-500 py-3 rounded-lg items-center" onPress={handleCancel}>
+                    <Text className="text-white font-bold">Cancelar</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity className="flex-1 bg-green-500 py-3 rounded-lg items-center" onPress={handleConfirm}>
+                    <Text className="text-white font-bold">Confirmar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         </View>
-      </Modal>
+      </SafeAreaView>
     </View>
   )
 }

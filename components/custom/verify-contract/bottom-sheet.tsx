@@ -41,11 +41,11 @@ export function BottomSheetVerifyContract({ bottomSheetModalRef, handleVerify, h
                 gap: 24,
               }}
             >
-              <View
+              {/* <View
                 className="w-full items-center pb-2"
               >
                 <View className="w-20 h-1 bg-gray-400 rounded-full" />
-              </View>
+              </View> */}
 
               <View className="flex-row items-center gap-3">
                 <View className="bg-primary p-2.5 rounded-lg">
