@@ -1,3 +1,4 @@
+import { CustomNotificationProvider } from "@/components/custom/notification"
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet"
 import { Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
@@ -8,7 +9,7 @@ import "../global.css"
 import { useAppFonts } from "../hooks/useAppFonts"
 
 SplashScreen.preventAutoHideAsync()
-Uniwind.setTheme("dark")
+Uniwind.setTheme("system")
 
 
 export default function RootLayout() {
@@ -26,18 +27,20 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <BottomSheetModalProvider>
-        <Stack>
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/index" />
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/initial" />
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/info-create-account" />
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/scanner-bar-code" />
-          <Stack.Screen options={{ headerShown: false }} name="(onboarding)/create-password" />
-          <Stack.Screen options={{ headerShown: false }} name="auth/login" />
-          <Stack.Screen options={{ headerShown: false }} name="(with-login)/(tabs)" />
-          <Stack.Screen options={{ headerShown: false }} name="(with-login)/instant-consumption" />
-          <Stack.Screen options={{ headerShown: false }} name="(with-login)/expected-end" />
-          <Stack.Screen options={{ headerShown: false }} name="(with-login)/add-energy" />
-        </Stack>
+        <CustomNotificationProvider>
+          <Stack>
+            <Stack.Screen options={{ headerShown: false }} name="(onboarding)/index" />
+            <Stack.Screen options={{ headerShown: false }} name="(onboarding)/initial" />
+            <Stack.Screen options={{ headerShown: false }} name="(onboarding)/info-create-account" />
+            <Stack.Screen options={{ headerShown: false }} name="(onboarding)/scanner-bar-code" />
+            <Stack.Screen options={{ headerShown: false }} name="(onboarding)/create-password" />
+            <Stack.Screen options={{ headerShown: false }} name="auth/login" />
+            <Stack.Screen options={{ headerShown: false }} name="(with-login)/(tabs)" />
+            <Stack.Screen options={{ headerShown: false }} name="(with-login)/instant-consumption" />
+            <Stack.Screen options={{ headerShown: false }} name="(with-login)/expected-end" />
+            <Stack.Screen options={{ headerShown: false }} name="(with-login)/add-energy" />
+          </Stack>
+        </CustomNotificationProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   )

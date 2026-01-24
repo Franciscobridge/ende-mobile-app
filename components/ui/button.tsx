@@ -14,7 +14,7 @@ export function Button({ disabled, onPress, title, variant = "primary" }: Button
     <TouchableOpacity
       className={
         variant === "primary"
-          ? `rounded-lg px-6 py-3 items-center ${disabled ? "bg-primary/60" : "bg-primary"}`
+          ? `rounded-lg px-8 py-3 items-center bg-primary`
           : `flex-1 border border-card rounded-lg py-3 items-center`
       }
       onPress={onPress}

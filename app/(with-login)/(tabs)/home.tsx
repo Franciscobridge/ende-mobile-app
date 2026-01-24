@@ -1,19 +1,21 @@
-import ButtonSquare from "@/components/custom/button-square";
+import { ButtonSquare } from "@/components/custom/button-square";
 import { EnergyUsageIndicator } from "@/components/custom/energy-usage-indicator";
 import { FixedHeader } from "@/components/custom/fixed-header";
-import { EnergyLineChart } from "@/components/custom/line-chart";
+import { HistoryLineChart } from "@/components/custom/history-line-chart";
 import { RecentAdd } from "@/components/custom/recent-add";
+import { MOCK_DATA_LINE_CHART } from "@/constants/mock-data-line-chart";
 import { RECENT_ADD } from "@/constants/mock-recent-add";
 import { Feather } from "@expo/vector-icons";
+import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useUniwind } from "uniwind";
 
-const remainingBalance = 132.4
-
 export default function Home() {
 
   const { theme } = useUniwind()
+  const [remainingBalance, setRemainingBalance] = useState<number>(188.3)
+  const [consumptionPercent, setConsumptionPercent] = useState<number>(88)
   return (
     <View className="flex-1 bg-background">
       <SafeAreaView style={{ flex: 1 }}>
@@ -21,11 +23,11 @@ export default function Home() {
           <FixedHeader title="Painel Central" />
           <ScrollView
             className="flex-1 px-4"
-            contentContainerStyle={{ gap: 15 }}
+            contentContainerStyle={{ gap: 15, paddingBottom: 20, marginTop: -15 }}
             showsVerticalScrollIndicator={false}
           >
             <View className="w-full items-center mt-5">
-              <View className="w-full h-40 bg-light-background dark:bg-card/20 rounded-lg px-4 py-5 flex-row items-center justify-between">
+              <View className="w-full h-40 bg-light-background/40 dark:bg-card/20 rounded-lg px-4 py-5 flex-row items-center justify-between">
                 <View className="gap-8">
                   <Text className="text-xl font-bold text-light-foreground dark:text-white">Saldo restante</Text>
                   <View className="flex-row items-baseline gap-1">
@@ -35,7 +37,7 @@ export default function Home() {
                     <Text className="text-light-foreground dark:text-foreground text-xs">Kwh</Text>
                   </View>
                 </View>
-                <EnergyUsageIndicator />
+                <EnergyUsageIndicator consumptionPercent={consumptionPercent} />
               </View>
             </View>
             <View className="flex-row gap-3">
@@ -44,13 +46,7 @@ export default function Home() {
               <ButtonSquare description="Recarregar Energia" icon="credit-card" variant="secundary" />
             </View>
             <View className="w-full">
-              <View className="bg-light-background dark:bg-card/20 w-full h-36 rounded-lg p-3">
-                <View>
-                  <Text className="font-bold text-light-foreground dark:text-white z-10">Histórico de consumo</Text>
-                  <Text className="text-primary dark:text-green-400 -mt-0.5 z-10">Hoje</Text>
-                </View>
-                <EnergyLineChart />
-              </View>
+              <HistoryLineChart data={MOCK_DATA_LINE_CHART} />
             </View>
 
             <View className="w-full gap-2">
@@ -69,7 +65,6 @@ export default function Home() {
                 ))}
               </View>
             </View>
-
           </ScrollView>
         </View>
       </SafeAreaView>

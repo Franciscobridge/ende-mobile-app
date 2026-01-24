@@ -1,10 +1,10 @@
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { BadgeCheckIcon, BadgeInfoIcon, BadgeXIcon, TriangleAlertIcon } from "lucide-react-native";
-import { useColorHook } from "@/lib/nativewind/useColors";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// import { useColorHook } from "@/lib/nativewind/useColors";
 import { NotificationProps } from "./types";
 
 export const Notification = ({ closeButtonLabel, handleClose, notification }: NotificationProps) => {
-  const { textColorBothThemes, IconGrayColorForBothTheme } = useColorHook();
+  // const { textColorBothThemes, IconGrayColorForBothTheme } = useColorHook();
   const defaultNotification = getBackNotificationInformation(notification?.type);
 
   return (
@@ -14,10 +14,10 @@ export const Notification = ({ closeButtonLabel, handleClose, notification }: No
           (notification?.Icon ? <notification.Icon /> : <defaultNotification.Icon fill={defaultNotification.color} color={defaultNotification.secondColor} size={55} />)}
       </View>
       <View className="w-full justify-center items-center">
-        <Text style={{ fontWeight: "bold", color: textColorBothThemes, fontSize: 18, marginBottom: 4, textAlign: "center" }}>
+        <Text style={{ fontWeight: "bold", color: "red", fontSize: 18, marginBottom: 4, textAlign: "center" }}>
           {notification?.title || defaultNotification.title}
         </Text>
-        <Text style={{ color: IconGrayColorForBothTheme, fontSize: 14, marginBottom: 24, textAlign: "center", padding: 8 }}>
+        <Text style={{ color: "green", fontSize: 14, marginBottom: 24, textAlign: "center", padding: 8 }}>
           {notification?.message || defaultNotification.message}
         </Text>
       </View>

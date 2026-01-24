@@ -55,7 +55,6 @@ export default function Initial() {
             © {new Date().getFullYear()} Ende App
           </Text>
         </View>
-
         <BottomSheetVerifyContract
           bottomSheetModalRef={bottomSheetModalRef}
           handleVerify={handleVerify}
