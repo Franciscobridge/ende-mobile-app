@@ -6,10 +6,11 @@ import { Feather } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 import { useState } from "react"
 import { ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { BarChart } from "react-native-gifted-charts"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useUniwind } from "uniwind"
 
-const PERIODS = ["Hoje", "7d", "30d", "Mês"]
+const PERIODS = ["Hoje", "7d", "15d", "Mês"]
 
 const MOCK_CONSUMPTION_BAR = [
   { value: 3.2, label: "01" },
@@ -37,16 +38,6 @@ export default function History() {
             contentContainerStyle={{ gap: 16, paddingBottom: 30 }}
             showsVerticalScrollIndicator={false}
           >
-            {/* <View className="flex-row gap-3">
-              <SummaryCard
-                icon="credit-card"
-                color="#3B82F6"
-                title="Saldo restante"
-                value="288 kWh"
-              />
-            </View> */}
-
-            {/* Filtro de período */}
             <View className="flex-row gap-2 mt-5">
               {PERIODS.map(period => (
                 <TouchableOpacity
@@ -99,28 +90,31 @@ export default function History() {
               <SummaryCard
                 icon="alert-triangle"
                 color="yellow"
-                title="Alerta consumo"
+                title="Alto consumo"
                 value="2 dias"
               />
             </View>
 
-            {/* Gráfico de Barras */}
-            {/* <View className="bg-light-background/40 dark:bg-card/20 rounded-lg p-4">
+            <View className="bg-light-background/40 dark:bg-card/20 rounded-lg p-4 overflow-hidden">
               <Text className="text-sm font-bold mb-2 text-light-foreground dark:text-white">
                 Consumo diário (kWh)
               </Text>
               <BarChart
                 data={MOCK_CONSUMPTION_BAR.map((d, i) => ({
                   ...d,
-                  frontColor: i % 2 === 0 ? "#22C55E" : "#3B82F6",
+                  frontColor: i % 2 === 0 ? "#22C55E20" : "#3B82F620",
+                  gradientColor: i % 2 === 0 ? "#22C55E" : "#3B82F6",
+                  showGradient: true
                 }))}
-                barWidth={22}
-                spacing={28}
-                roundedTop
+                height={120}
+                barWidth={25}
+                spacing={20}
+                barBorderRadius={5}
                 hideRules
                 yAxisThickness={0}
                 xAxisThickness={0}
-                noOfSections={3}
+                noOfSections={4}
+                maxValue={10}
                 frontColor="#111111"
                 yAxisTextStyle={{
                   color: theme === "light" ? "#111111" : "#ffffff",
@@ -130,11 +124,10 @@ export default function History() {
                   color: theme === "light" ? "#111111" : "#ffffff",
                   fontSize: 10,
                 }}
-              // showValuesOnTopOfBars
+              // showValuesAsTopLabel
               />
-            </View> */}
+            </View>
 
-            {/* Toggle Consumo / Recargas */}
             <View className="flex-row bg-light-background/40 dark:bg-card/20 rounded-full p-1">
               <TouchableOpacity
                 onPress={() => setActiveTab("consumption")}
@@ -159,14 +152,13 @@ export default function History() {
               </TouchableOpacity>
             </View>
 
-            {/* Lista */}
             <View className="gap-3">
               {activeTab === "consumption" ? (
                 <>
-                  <HistoryItem date="12 Jan" value="4.2 kWh" amount="620 Kz" icon="zap" color="#22C55E" time="14:30" />
-                  <HistoryItem date="11 Jan" value="3.8 kWh" amount="560 Kz" icon="zap" color="#3B82F6" time="11:15" />
-                  <HistoryItem date="10 Jan" value="5.1 kWh" amount="710 Kz" alert icon="alert-triangle" color="#F97316" time="16:50" />
-                  <HistoryItem date="10 Jan" value="5.1 kWh" amount="710 Kz" alert icon="alert-triangle" color="#F97316" time="16:50" />
+                  <HistoryItem date="12 Jan" value="4.2 kWh" amount="620 Kz" icon="zap" color="#22C55E" />
+                  <HistoryItem date="11 Jan" value="3.8 kWh" amount="560 Kz" icon="zap" color="#3B82F6" />
+                  <HistoryItem date="10 Jan" value="5.1 kWh" amount="710 Kz" alert icon="alert-triangle" color="#F97316" />
+                  <HistoryItem date="09 Jan" value="7.1 kWh" amount="710 Kz" alert icon="alert-triangle" color="#F97316" />
                 </>
               ) : (
                 MOCK_RECHARGE.map((item, index) => (
@@ -182,8 +174,16 @@ export default function History() {
                 ))
               )}
             </View>
-
-            {/* CTA */}
+            {activeTab === "consumption" && (
+              <TouchableOpacity activeOpacity={0.5} className="w-full justify-end flex-row">
+                <Text className="text-light-foreground dark:text-foreground/80 font-sans">Ver todos...</Text>
+              </TouchableOpacity>
+            )}
+            {activeTab === "recharge" && (
+              <TouchableOpacity activeOpacity={0.5} className="w-full justify-end flex-row">
+                <Text className="text-light-foreground dark:text-foreground/80 font-sans">Ver todos...</Text>
+              </TouchableOpacity>
+            )}
             {activeTab === "recharge" && (
               <TouchableOpacity className="bg-primary rounded-lg py-3 items-center flex-row justify-center gap-2">
                 <Feather name="plus-circle" size={20} color="#fff" />
@@ -196,18 +196,3 @@ export default function History() {
     </>
   )
 }
-
-// Card de resumo
-// function SummaryCard({ icon, color, title, value }: { icon: keyof typeof Feather.glyphMap, color: string, title: string, value: string }) {
-//   return (
-//     <View className="flex-1 rounded-lg p-4 flex-row items-center gap-2" style={{ backgroundColor: `${color}10` }}>
-//       <Feather name={icon} size={24} color={color} />
-//       <View>
-//         <Text className="text-sm text-light-foreground dark:text-foreground">{title}</Text>
-//         <Text className="text-xl font-bold" style={{ color }}>{value}</Text>
-//       </View>
-//     </View>
-//   )
-// }
-
-// Item da lista

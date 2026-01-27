@@ -27,7 +27,7 @@ export function HistoryItem({
       <View className="flex-row items-center gap-2">
         {icon && <Feather name={icon} size={20} color={color || (theme === "light" ? "#111" : "#fff")} />}
         <View>
-          <Text className="text-sm text-light-foreground dark:text-foreground">{date} {time && `• ${time}`}</Text>
+          <Text className="text-sm font-sans text-light-foreground dark:text-foreground">{date} {time && `• ${time}`}</Text>
           <Text className="font-bold text-light-foreground dark:text-white">{value}</Text>
         </View>
       </View>

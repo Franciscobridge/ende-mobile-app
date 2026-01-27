@@ -12,7 +12,7 @@ import "../global.css"
 import { useAppFonts } from "../hooks/useAppFonts"
 
 SplashScreen.preventAutoHideAsync()
-Uniwind.setTheme("dark")
+Uniwind.setTheme("light")
 
 
 export default function RootLayout() {
