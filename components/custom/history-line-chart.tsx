@@ -42,7 +42,7 @@ export function HistoryLineChart({ data }: EnergyLineChartProps) {
           initialSpacing={0}
           color1="#05df72"
           hideDataPoints
-          startFillColor1="oklch(79.2% 0.209 151.711)"
+          startFillColor1="#05df72"
           startOpacity={0.4}
           endOpacity={0.1}
           maxValue={5}

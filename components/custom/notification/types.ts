@@ -1,5 +1,5 @@
-import { ElementType } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { ElementType } from "react";
 
 
 export type CustomNotificationProps = {

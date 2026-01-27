@@ -48,7 +48,7 @@ export default function ScannerBarCode() {
   }
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="flex-1 bg-light-card dark:bg-background">
       <SafeAreaView style={{ flex: 1 }}>
         <View className="flex-1 bg-light-background dark:bg-background px-4">
           <View className="flex-1 items-center justify-center">

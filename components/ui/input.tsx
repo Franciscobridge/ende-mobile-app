@@ -4,7 +4,7 @@ import { Text, TextInput, TextInputProps, View } from 'react-native';
 type InputProps = {
   formProps: UseControllerProps
   inputProps: TextInputProps,
-  error: string
+  error?: string
 }
 
 export function Input({ formProps, inputProps, error = "" }: InputProps) {

@@ -33,7 +33,7 @@ export default function Initial() {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#111111" }}>
+    <View className="flex-1 bg-light-card dark:bg-background ">
       <SafeAreaView style={{ flex: 1 }}>
         <View className="flex-1 px-5 gap-10 items-center bg-light-background dark:bg-background">
           <Header />
